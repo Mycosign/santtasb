@@ -1,0 +1,54 @@
+{% extends "base_email.html" %}
+
+{% block title %}Loan Application Decision: {{ reference_number }}{% endblock %}
+
+{% block content %}
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <div style="background-color: #6c757d; color: white; padding: 15px; text-align: center; border-radius: 5px 5px 0 0;">
+    <h1 style="margin: 0; font-size: 24px;">Loan Application Decision</h1>
+  </div>
+  
+  <div style="padding: 20px; background-color: #f9f9f9;">
+    <h2 style="color: #6c757d; margin-top: 0;">Dear {{ user.first_name }},</h2>
+    
+    <p>Thank you for your recent loan application (Reference: <strong>{{ reference_number }}</strong>). After careful review, we regret to inform you that we are unable to approve your application at this time.</p>
+    
+    <div style="margin: 20px 0; padding: 15px; background-color: #f2f2f2; border-radius: 5px;">
+      <h3 style="color: #6c757d; margin-top: 0;">Application Details</h3>
+      <p><strong>Product:</strong> {{ loan.get_loan_product_display_name }}</p>
+      <p><strong>Requested Amount:</strong> ${{ loan.loan_amount }}</p>
+      <p><strong>Term:</strong> {{ loan.get_term_display_name }}</p>
+      <p><strong>Application Date:</strong> {{ loan.created_at|date:"F j, Y" }}</p>
+    </div>
+    
+    {% if decision_notes %}
+    <div style="margin: 20px 0; padding: 15px; background-color: #f2f2f2; border-radius: 5px;">
+      <h3 style="color: #6c757d; margin-top: 0;">Decision Details</h3>
+      <p>{{ decision_notes }}</p>
+    </div>
+    {% endif %}
+    
+    <p>We understand this may be disappointing. Please know that this decision was based on our current lending criteria and does not necessarily reflect your creditworthiness for other financial products.</p>
+    
+    <p>You will receive a separate notice providing specific reasons for this decision as required by law.</p>
+    
+    <p>What you can do next:</p>
+    <ul style="margin-bottom: 20px;">
+      <li>Review your credit report for accuracy</li>
+      <li>Schedule a consultation with one of our financial advisors</li>
+      <li>Consider applying for a different loan product that may better match your current financial situation</li>
+    </ul>
+    
+    <div style="margin: 20px 0; padding: 15px; background-color: #f2f2f2; border-radius: 5px;">
+      <p style="margin: 0; text-align: center;">
+        <a href="{{ financial_counseling_url }}" style="display: inline-block; background-color: #6c757d; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Schedule Financial Consultation</a>
+      </p>
+    </div>
+  </div>
+  
+  <div style="padding: 15px; text-align: center; font-size: 12px; color: #666;">
+    <p>If you have any questions, please contact our customer support team at support@san-tandorglobal.online</p>
+    <p>Please do not reply to this email as it is automatically generated.</p>
+  </div>
+</div>
+{% endblock %}

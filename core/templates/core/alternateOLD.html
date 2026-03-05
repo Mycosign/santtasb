@@ -1,0 +1,818 @@
+{% include "core/header.html" %}
+{% load static %}
+
+
+        <div class="wrapper_inner clearfix clear" id="startcontent">
+            <!-- start home_page -->
+
+            <!--BANNERS are personalized -->
+
+            <div class="hero-banner-2023 contentdeck banner-collage  txt-dark  ">
+                <div class="clearfix">
+                    <div class="deckinner deck-distinct   txt-dark">
+                        <div class="collage-content inner fix">
+
+                            <h1 class="deck-title h1-style txt-center" role="heading" aria-level="1">Kasasa Saver</h1>
+<style>
+    /* 🔥 Unique Styling for Custom Language Selector */
+    .custom-translate-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background: #ffffff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-family: 'Arial', sans-serif;
+        max-width: 300px;
+        cursor: pointer;
+        left: 50px;
+    }
+
+    .custom-translate-container label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Hide Google’s original UI */
+    #custom_google_translate {
+        display: none;
+    }
+
+    /* Custom dropdown style */
+    .custom-language-selector {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border: none;
+        border-radius: 5px;
+        background: #f5f5f5;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .custom-language-selector:hover {
+        background: #eaeaea;
+    }
+
+    /* Dropdown Arrow Customization */
+    .custom-language-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    .custom-language-wrapper::after {
+        content: "▼";
+        font-size: 12px;
+        color: #333;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+</style>
+
+<!-- ✅ Custom Google Translate Logic -->
+<script type="text/javascript">
+    function initCustomGoogleTranslate() {
+        if (!document.getElementById('custom_google_translate_script')) {
+            let script = document.createElement('script');
+            script.id = 'custom_google_translate_script';
+            script.type = 'text/javascript';
+            script.src = "//translate.google.com/translate_a/element.js?cb=loadCustomTranslate";
+            document.body.appendChild(script);
+        } else {
+            loadCustomTranslate();
+        }
+    }
+
+    function loadCustomTranslate() {
+        new google.translate.TranslateElement({ pageLanguage: 'en' }, 'custom_google_translate');
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        initCustomGoogleTranslate();
+
+        document.getElementById('custom_language_select').addEventListener('change', function () {
+            var lang = this.value;
+            var googleSelect = document.querySelector('.goog-te-combo');
+
+            if (lang === "en-GB" || lang === "en-US") {
+                // 🚀 Reset Google Translate to Original English (Without Reload)
+                document.cookie = "googtrans=/en/en; path=/; domain=" + window.location.hostname;
+                window.location.reload();  // Force reload to apply changes
+            } else if (googleSelect) {
+                googleSelect.value = lang;
+                googleSelect.dispatchEvent(new Event('change')); // Trigger Google Translate
+            }
+        });
+    });
+</script>
+
+<!-- ✅ Custom Translation UI -->
+<div class="custom-translate-container">
+    <label>🌎 Language:</label>
+    <div class="custom-language-wrapper">
+<select id="custom_language_select" class="custom-language-selector">
+    <!-- 🌍 Asia (Expanded) -->
+    <optgroup label="🌏 Asia">
+        <option value="zh-CN">🇨🇳 Chinese (Simplified)</option>
+        <option value="zh-TW">🇹🇼 Chinese (Traditional)</option>
+        <option value="ja">🇯🇵 Japanese</option>
+        <option value="ko">🇰🇷 Korean</option>
+        <option value="hi">🇮🇳 Hindi</option>
+        <option value="bn">🇧🇩 Bengali</option>
+        <option value="ur">🇵🇰 Urdu</option>
+        <option value="ar">🇦🇪 Arabic</option>
+        <option value="th">🇹🇭 Thai</option>
+        <option value="vi">🇻🇳 Vietnamese</option>
+        <option value="ms">🇲🇾 Malay</option>
+        <option value="id">🇮🇩 Indonesian</option>
+        <option value="tl">🇵🇭 Filipino/Tagalog</option>
+        <option value="km">🇰🇭 Khmer</option>
+        <option value="my">🇲🇲 Burmese</option>
+        <option value="ne">🇳🇵 Nepali</option>
+        <option value="si">🇱🇰 Sinhala</option>
+        <option value="fa">🇮🇷 Persian/Farsi</option>
+    </optgroup>
+
+    <!-- 🌍 Europe -->
+    <optgroup label="🇪🇺 Europe">
+        <option value="en-GB">🇬🇧 English (UK)</option>
+        <option value="de">🇩🇪 German</option>
+        <option value="fr">🇫🇷 French</option>
+        <option value="es">🇪🇸 Spanish</option>
+        <option value="it">🇮🇹 Italian</option>
+        <option value="ru">🇷🇺 Russian</option>
+        <option value="nl">🇳🇱 Dutch</option>
+        <option value="sv">🇸🇪 Swedish</option>
+        <option value="no">🇳🇴 Norwegian</option>
+        <option value="da">🇩🇰 Danish</option>
+        <option value="fi">🇫🇮 Finnish</option>
+        <option value="pl">🇵🇱 Polish</option>
+        <option value="uk">🇺🇦 Ukrainian</option>
+        <option value="cs">🇨🇿 Czech</option>
+        <option value="hu">🇭🇺 Hungarian</option>
+        <option value="el">🇬🇷 Greek</option>
+        <option value="tr">🇹🇷 Turkish</option>
+        <option value="pt">🇵🇹 Portuguese</option>
+        <option value="ro">🇷🇴 Romanian</option>
+        <option value="bg">🇧🇬 Bulgarian</option>
+    </optgroup>
+
+    <!-- 🌍 Africa -->
+    <optgroup label="🌍 Africa">
+        <option value="sw">🇰🇪 Swahili</option>
+        <option value="zu">🇿🇦 Zulu</option>
+        <option value="ha">🇳🇬 Hausa</option>
+        <option value="yo">🇳🇬 Yoruba</option>
+        <option value="ig">🇳🇬 Igbo</option>
+        <option value="am">🇪🇹 Amharic</option>
+        <option value="so">🇸🇴 Somali</option>
+        <option value="mg">🇲🇬 Malagasy</option>
+        <option value="af">🇿🇦 Afrikaans</option>
+    </optgroup>
+
+    <!-- 🌍 North America -->
+    <optgroup label="🌎 North America">
+        <option value="en-US">🇺🇸 English (US)</option>
+        <option value="fr-CA">🇨🇦 French (Canadian)</option>
+        <option value="es-MX">🇲🇽 Spanish (Mexican)</option>
+        <option value="haw">🇺🇸 Hawaiian</option>
+        <option value="nv">🇺🇸 Navajo</option>
+    </optgroup>
+
+    <!-- 🌍 South America -->
+    <optgroup label="🌎 South America">
+        <option value="pt-BR">🇧🇷 Portuguese (Brazilian)</option>
+        <option value="es-AR">🇦🇷 Spanish (Argentinian)</option>
+        <option value="qu">🇵🇪 Quechua</option>
+        <option value="ay">🇧🇴 Aymara</option>
+        <option value="gn">🇵🇾 Guarani</option>
+    </optgroup>
+
+    <!-- 🌍 Oceania -->
+    <optgroup label="🌏 Oceania">
+        <option value="en-AU">🇦🇺 English (Australian)</option>
+        <option value="en-NZ">🇳🇿 English (New Zealand)</option>
+        <option value="mi">🇳🇿 Māori</option>
+        <option value="sm">🇼🇸 Samoan</option>
+        <option value="to">🇹🇴 Tongan</option>
+        <option value="fj">🇫🇯 Fijian</option>
+    </optgroup>
+</select>
+    </div>
+</div>
+
+<!-- ✅ Hidden Google Translate Instance -->
+<div id="custom_google_translate"></div>
+
+
+                            <p><span class="intro">Effortless Savings.&nbsp;</span></p>
+                            <p><strong>Take control of your financial future!</strong> Get started today.&nbsp;&nbsp;</p>
+
+                        </div>
+                        <div class="collage-container layout-1">
+                            <div class="collage-img collage-1"><img src="{% static 'assetzz/content/images/original/Americas-Kasasa-Saver-3.jpg' %}" alt="" loading="lazy"></div>
+                            <div class="collage-img collage-2"><img src="{% static 'assetzz/content/images/original/americas-join-3.jpg' %}" alt="" loading="lazy"></div>
+                            <div class="collage-img collage-3"><img src="{% static 'assetzz/content/images/original/Americas-What-We-Do-2.jpg' %}" alt="" loading="lazy"></div>
+                            <div class="collage-img collage-4"><img src="{% static 'assetzz/content/images/original/Americas-What-We-Do-1.jpg' %}" alt="" loading="lazy"></div>
+                            <div class="collage-square collage-5 bg-color-palepurple"></div>
+                            <div class="collage-square collage-6 bg-color-red"></div>
+                            <div class="collage-button collage-7"> </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-inner home-page fix">
+                <!--content column-->
+
+                <div class="onewhole left">
+                    <div class="inner">
+
+                        <div id="page-content" class="content content1 cimg-container">
+                            <h1 class="page-title just-sr">Home</h1>
+
+                            <p><br /><br /><br /><br /></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+            <div class="onewhole left">
+
+                <div class="decks fix clear">
+                    <div class="content content2 fix clear cimg-container">
+                        <p>
+                            <div class="contentdeck bg-color-transparent     onewhole   full-width-deck fix clear">
+                                <div class="banner-overlay clearfix">
+                                    <div class="deckinner fix no-padding" style="margin:auto;">
+                                        <div class="multicol-inner ">
+                                            <div class="deck-title h2-style  txt-center  " role="heading" aria-level="2">Trending Now</div>
+
+
+                                            <div class="multicol-intro fix">
+                                                <p style="text-align: center;">Check out what's hot this month!</p>
+                                            </div>
+                                            <div class="clear"></div>
+
+
+                                            <div class="onewhole left multicol1">
+                                                <div class=" inner fix">
+                                                    <p>
+                                                        <STYLE>
+                                                            /* Carousel promotions link-addition - expanded hitbox for title link*/
+
+                                                            .expanded-card-link .card {
+                                                                position: relative;
+                                                            }
+
+                                                            .expanded-card-link .card:hover {
+                                                                /* don't use a card-based hover effect since the link adds it*/
+                                                            }
+
+                                                            .expanded-card-link .card .deck-title a::before {
+                                                                content: '';
+                                                                position: absolute;
+                                                                top: 0;
+                                                                left: 0;
+                                                                right: 0;
+                                                                bottom: 0;
+                                                                z-index: 1;
+                                                            }
+
+                                                            .expanded-card-link .card .deck-title a {
+                                                                cursor: pointer;
+                                                                text-decoration: none !important;
+                                                            }
+
+                                                            .expanded-card-link .card .deck-title a:hover {}
+
+                                                            .expanded-card-link .card .deck-title a:hover::before,
+                                                            .expanded-card-link .card .deck-title a:focus::before {
+                                                                cursor: pointer;
+                                                                box-shadow: 0 5px 13px rgb(0 0 0 / 0.3);
+                                                                border-radius: 16px;
+                                                            }
+
+                                                            .expanded-card-link .card .deck-title a:focus,
+                                                            .expanded-card-link:focus {
+                                                                outline-width: 1px;
+                                                                outline-color: #dedede;
+                                                            }
+
+                                                            .expanded-card-link .feature-copy a {
+                                                                position: relative;
+                                                                z-index: 2;
+                                                                /* allows inside links to work by raising them above the box */
+                                                            }
+                                                        </STYLE>
+                                                        <div class="slick-slider carousel-promotions">
+
+
+
+                                                            <div class="slick-content expanded-card-link">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-palepurple">
+                                                                        <div class="card-body">
+                                                                            <div class="feature-icon"><i class="fa-solid fa-treasure-chest color-palepurple"></i></div>
+                                                                            <div class="feature-content">
+                                                                                <div class="deck-title h2-style" role="heading" aria-level="2"><a href="/html/savings/" class="" data-perstag="31" data-bid="66">Savings</a></div>
+                                                                                <div class="feature-copy">
+                                                                                    <p>Rates as high as</p>
+                                                                                    <p><span class="lexend-light medium">1.75% APY
+                                                                    <sup><a class="footnote-link" href="#ftnt-2" id="fnref-1" data-fnid="ftnt-2" aria-label="link to footnote number 2">2</a></sup>
+                                                                    </span></p>
+                                                                                    <p></p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content expanded-card-link">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-red">
+                                                                        <div class="card-body">
+                                                                            <div class="feature-icon"><i class="fa-solid fa-cash-register color-red"></i></div>
+                                                                            <div class="feature-content">
+                                                                                <div class="deck-title h2-style" role="heading" aria-level="2"><a href="/html/cashback/" class="" data-perstag="24" data-bid="67">Cash Back Rewards Checking</a></div>
+                                                                                <div class="feature-copy">
+                                                                                    <p>Rewards for everyday purchases!</p>
+                                                                                    <p>Get up to 3% cash back on debit card purchases up to $300.</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content expanded-card-link">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-blue">
+                                                                        <div class="card-body">
+                                                                            <div class="feature-icon"><i class="fa-sharp fa-solid fa-car color-blue"></i></div>
+                                                                            <div class="feature-content">
+                                                                                <div class="deck-title h2-style" role="heading" aria-level="2"><a href="/html/auto-loan/" class="" data-perstag="3" data-bid="69">Auto Loans</a></div>
+                                                                                <div class="feature-copy">
+                                                                                    <p>Fixed-Rate up to 36 months as low as</p>
+                                                                                    <p><span class="lexend-light medium">5.19% APR
+                                                                                    <sup><a class="footnote-link" href="#ftnt-1" id="fnref-2" data-fnid="ftnt-1" aria-label="link to footnote number 1">1</a></sup>
+                                                                                    </span></p>
+                                                                                    <p></p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content expanded-card-link">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-yellow">
+                                                                        <div class="card-body">
+                                                                            <div class="feature-icon"><i class="fa-solid fa-wallet color-yellow"></i></div>
+                                                                            <div class="feature-content">
+                                                                                <div class="deck-title h2-style" role="heading" aria-level="2"><a href="/html/digital-wallet/" class="" data-perstag="28" data-bid="602">Digital Wallet</a></div>
+                                                                                <div class="feature-copy">
+                                                                                    <p>Easily add your Visa&reg; credit and debit card to your device's digital wallet for convenient payments for in-store, online, and in-app purchases.</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content expanded-card-link">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-yellow">
+                                                                        <div class="card-body">
+                                                                            <div class="feature-icon"><i class="fa-sharp fa-solid fa-house color-yellow"></i></div>
+                                                                            <div class="feature-content">
+                                                                                <div class="deck-title h2-style" role="heading" aria-level="2"><a href="/html/home-equity/" class="" data-perstag="18" data-bid="607">Home Equity Loans</a></div>
+                                                                                <div class="feature-copy">
+                                                                                    <p>Low, fixed interest rates!</p>
+                                                                                    <p>Terms from 5 to 30 years</p>
+                                                                                    <p></p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+
+                                                        </div>
+                                                    </p>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="clear"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p>
+                        <p>
+                            <div class="contentdeck two-column-text-image deck-image-overlap reverse-overlap   txt-dark  photo-align-left">
+                                <div class="clearfix">
+                                    <div class="deckinner deck-distinct   txt-dark">
+                                        <div class=" multicol2">
+                                            <div class="multicol-inner fix">
+                                                <div class="overlap-img overlap-1"><img src="{% static 'assetzz/content/images/700/Hispanic-Girl-with-Flag.jpg' %}" alt="" loading="lazy"></div>
+                                                <div class="overlap-img overlap-2"><img src="{% static 'assetzz/content/images/700/example-flag.jpg' %}" alt="" loading="lazy"></div>
+                                                <div class="overlap-mini-square  ">
+                                                    <div class="mini-text ">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="multicol1">
+                                            <div class="multicol-inner inner fix">
+
+                                                <div class="deck-title h2-style txt-center " role="heading" aria-level="2">Join Us Today</div>
+
+
+
+                                                <p>
+                                                    <div id="counter_wrapper" class="counter-feature container-fluid text-center">
+                                                        <div class="container" id="counter_trigger">
+                                                            <div class="counter-blocks ">
+                                                                <div class="card counter-block-1">
+                                                                    <div class="counter-number"><span class="counter" data-count="2080">0</span></div>
+                                                                    <p>Annual volunteer hours</p>
+                                                                </div>
+                                                                <div class="card counter-block-2">
+                                                                    <div class="counter-number"><span class="counter" data-count="90">0</span></div>
+                                                                    <p>Years of better rates and lower fees</p>
+                                                                </div>
+                                                                <div class="card counter-block-3">
+                                                                    <div class="counter-number"><span class="counter" data-count="4.4">0</span></div>
+                                                                    <p>Average Google rating out of 5 stars</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </p>
+
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p>
+                        <p>
+                            <div class="contentdeck bg-color-blue2 txt-light  deck-angled-top-bottom  onewhole    fix clear">
+                                <div class="banner-overlay clearfix">
+                                    <div class="deckinner fix " style="margin:auto;">
+                                        <div class="multicol-inner txt-light">
+                                            <div class="deck-title h2-style remove-caps txt-center txt-light lexend-light" role="heading" aria-level="2">News & Updates</div>
+
+
+                                            <div class="multicol-intro fix">
+                                                <p style="text-align: center;">Stay up to date on all things new &amp; exciting happening at America&rsquo;s CU!</p>
+                                            </div>
+                                            <div class="clear"></div>
+
+
+                                            <div class="onewhole left multicol1">
+                                                <div class=" inner fix">
+                                                    <p>
+                                                        <STYLE>
+                                                            .news-grid-text {
+                                                                font-size: 1rem;
+                                                                margin-top: 10px;
+                                                            }
+                                                        </STYLE>
+
+                                                        <div class="stacked-bars-container custom-news-grid">
+
+
+
+
+                                                            <div class="news-grid-item card">
+                                                                <div class="news-grid-pic"><img src="{% static 'assetzz/content/images/original/Americas-Event-Entry-1.jpg' %}" alt=""></div>
+                                                                <div class="news-grid-content">
+                                                                    <div class="news-grid-title"><a  class="">We Are Celebrating You, Our Members!</a></div>
+                                                                    <div class="news-grid-text">
+                                                                        <p>As a special thank you for 90 amazing years, we are giving our members the opportunity to earn a&nbsp;<strong>$90 cash bonus for each</strong>&nbsp;new member they bring to America&rsquo;s
+                                                                            CU.&nbsp;</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+
+
+                                                            <div class="news-grid-item card">
+                                                                <div class="news-grid-pic"><img src="{% static 'assetzz/content/images/original/Quishing-photo.png' %}" alt=""></div>
+                                                                <div class="news-grid-content">
+                                                                    <div class="news-grid-title"><a  class="">Fraud Awareness - Quishing.</a></div>
+                                                                    <div class="news-grid-text">
+                                                                        <p>Be aware of a popular scam: Quishing, short for QR code phishing, is an identity fraud scam that utilizes QR codes.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+
+
+                                                            <div class="news-grid-item card">
+                                                                <div class="news-grid-pic"><img src="{% static 'assetzz/content/images/original/home-equity-600px.jpg' %}" alt=""></div>
+                                                                <div class="news-grid-content">
+                                                                    <div class="news-grid-title"><a  class="">Maximize Your Home's Value with Home Equity Loans.</a></div>
+                                                                    <div class="news-grid-text">
+                                                                        <p>Access low, fixed-rate loans with flexible terms to fund your next big project.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+
+
+                                                            <div class="news-grid-item card">
+                                                                <div class="news-grid-pic"><img src="{% static 'assetzz/content/images/original/Americas-Homepage-News-2.jpg' %}" alt=""></div>
+                                                                <div class="news-grid-content">
+                                                                    <div class="news-grid-title"><a  class="">Personal Loans for Extra Cash?</a></div>
+                                                                    <div class="news-grid-text">
+                                                                        <p>A personal loan can help you when you're in a pinch.</p>
+                                                                        <p></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        </div>
+                                                    </p>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="clear"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p>
+                        <p>
+                            <div class="contentdeck bg-color-transparent     onewhole   full-width-deck fix clear">
+                                <div class="banner-overlay clearfix">
+                                    <div class="deckinner fix no-padding" style="margin:auto;">
+                                        <div class="multicol-inner ">
+
+
+                                            <div class="onewhole left multicol1">
+                                                <div class=" inner fix">
+                                                    <p>
+                                                        <div class="txt-center color-blue large lexend-light">What our members are saying</div>
+                                                        <div class="slick-slider carousel-testimonials">
+
+
+                                                            <div class="slick-content">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-yellow">
+                                                                        <div class="card-body">
+                                                                            <div class="testimonial-text">"I appreciate everyone’s help here. Myrna was very knowledgeable and made the car loan process seem less complicated than anticipated. Definitely recommend coming here!"</div>
+                                                                            <div class="testimonial-author"><b class="color-blue2">Soledad Castillo</b><br>2023</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-grapepurple">
+                                                                        <div class="card-body">
+                                                                            <div class="testimonial-text">"I love this credit union. I’ve been with them for 5-6 years! I’ve financed cars, loans & I have credit cards with them! The best rates and such an easy application process! :)"</div>
+                                                                            <div class="testimonial-author"><b class="color-blue2">Nicole Grant</b><br>2023</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-blue2">
+                                                                        <div class="card-body">
+                                                                            <div class="testimonial-text">"Professional and caring. First class service. I highly recommend ACU to those who are seeking a great and honest experience."</div>
+                                                                            <div class="testimonial-author"><b class="color-blue2">Rojelio Leal</b><br>2023</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-brightblue">
+                                                                        <div class="card-body">
+                                                                            <div class="testimonial-text">"Americas Credit Union is an excellent place to do business with. They are honest, efficient, extremely helpful and customer focused."</div>
+                                                                            <div class="testimonial-author"><b class="color-blue2">Frank Ramseur</b><br>2023</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-yellow">
+                                                                        <div class="card-body">
+                                                                            <div class="testimonial-text">"I’ve been banking here since it was Dallas Telco and while all my experiences have been great, the credit Union is the best. They go the extra mile to get to know you and get
+                                                                                you all the options. I really appreciate all they do!"</div>
+                                                                            <div class="testimonial-author"><b class="color-blue2">Tia Rich</b><br>2023</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-maroon">
+                                                                        <div class="card-body">
+                                                                            <div class="testimonial-text">"I have been a customer of this credit union for many years and have gone through a couple of name changes, but the service has remained awesome. They continue to explain everything
+                                                                                to me from step one till closing. This was easy peasy! Love ACU!"</div>
+                                                                            <div class="testimonial-author"><b class="color-blue2">Bonnie Mathias</b><br>2023</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-blue">
+                                                                        <div class="card-body">
+                                                                            <div class="testimonial-text">"Excellent service, I was assisted by Miss Ana Barajas, a very kind person. Best of all, she assisted me in my language and clarified my doubts without a doubt, 5-star service."</div>
+                                                                            <div class="testimonial-author"><b class="color-blue2">M.B. Llegadoras</b><br>2023</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-brightblue">
+                                                                        <div class="card-body">
+                                                                            <div class="testimonial-text">"Omg the employees at this location are the best!!"</div>
+                                                                            <div class="testimonial-author"><b class="color-blue2">Madison Nichols</b><br>2023</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-icyblue">
+                                                                        <div class="card-body">
+                                                                            <div class="testimonial-text">"Everyone is always so nice and professional."</div>
+                                                                            <div class="testimonial-author"><b class="color-blue2">Allen Smith</b><br>2024</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-grapepurple">
+                                                                        <div class="card-body">
+                                                                            <div class="testimonial-text">"I was told to help and invest in a local bank I never got anything out of that until I found America's Credit Union, it's never too late to be happy."</div>
+                                                                            <div class="testimonial-author"><b class="color-blue2">Claude Daniel</b><br>2024</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-icyblue">
+                                                                        <div class="card-body">
+                                                                            <div class="testimonial-text">"I’ve been with America’s Credit Union going on 15 years because of their rates and customer service. When talking about customer service, Trish R. goes above and beyond to make
+                                                                                sure to get you the very best deal and build a relationship. I would not do business with any other bank because of the experience she provides. With most banks, they make
+                                                                                you feel like it’s a burden to loan you money, but with ACU, they gladly lend a helping hand to loan you anything you need at an exceptional interest rate. This credit union
+                                                                                deserves 10 stars across the board."</div>
+                                                                            <div class="testimonial-author"><b class="color-blue2">Kyle Williams</b><br>2024</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="slick-content">
+
+                                                                <div class="container">
+                                                                    <div class="card h-100 border-color-red">
+                                                                        <div class="card-body">
+                                                                            <div class="testimonial-text">"I went to open up my first credit union account and got Veronica at the Garland location. She has been such huge help. She explained how different plans work, and got the best
+                                                                                plan for me. She also helped and explained to me about the process on how the check deposit works. She also at the mesquite location. I recommend going to American credit
+                                                                                union and asking for Veronica."</div>
+                                                                            <div class="testimonial-author"><b class="color-blue2">Tara Washington</b><br>2024</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </p>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="clear"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="page-inner fix">
+                <div class=" content content3 fix clear cimg-container">
+                    <div class="inner">
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!--end home_page-->
+        </div>
+        <!--end wrapper_inner-->
+    </div>
+
+
+{% include "core/footer.html" %}

@@ -1,0 +1,445 @@
+{% include "core/header.html" %}
+{% load static %}
+<main class="grid O-SMARTSPCGENGRID">
+    <div class="row with-bg">
+        <div class="sm-12">
+            <div class="row">
+                <div class="lg-9 md-10 hide-on-mobile"></div>
+                <div class="lg-3 md-2 sm-12"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row with-bg">
+        <div class="sm-12">
+            <div class="cc-wrapper O-COLCTRL-RW-DEV">
+                <div id="brnchlctr_tool_columnControl_1">
+                    <div class="cc cc-columns-100">
+                        <div id="brnchlctr_tool_columnControlColumn_1" class="cc-column">
+                            <div class="O-TITLE-RW-DEV O-SMARTSPCGEN-DEV">
+                                <div id="brnchlctr_tool_title_1" class="remove-bottom-space">
+                                    <h2 class="A-BBST28R-RW-ALL">
+                                        Allpoint ATM Network
+                                    </h2>
+                                    <div class="row">
+                                        <div class="sm-12 organismsContainer"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cc-wrapper O-COLCTRL-RW-DEV">
+                <div id="brnchlctr_tool_columnControl_2">
+                    <div class="cc cc-columns-66-33">
+                        <div id="brnchlctr_tool_columnControlColumn_2" class="cc-column">
+                            <div class="M-CONTMAST-RW-RBWM O-SMARTSPCGEN-DEV rich-text">
+                                <div id="brnchlctr_tool_richtext_1" class="A-PAR16R-RW-ALL-WRAPPER" data-date-format="M/D/YYYY" data-time-format="HH:MM:SS A" data-zone="America/New_York">
+                                    <p class="A-PAR16R-RW-ALL">
+                                        HSBC is part of the Allpoint<sup><a href="#fn-1" title="View footnote 1">1</a></sup> network of&nbsp;55,000&nbsp;ATMs&nbsp;worldwide, located in many of the top retailers.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="M-CONTMAST-RW-RBWM O-SMARTSPCGEN-DEV content-buttons">
+                                <div id="brnchlctr_tool_buttons_1">
+                                    <div class="clearfix horizontal">
+                                        <a class="A-BTNP-RW-ALL" href="https://www.allpointnetwork.com/locator.html" target="_blank" rel="noopener " id="brnchlctr_tool_button_1">
+                                            <span aria-hidden="true">Find ATMs</span>
+                                            <span class="visuallyhidden">Find ATMs This link will open in a new window</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="O-SMARTSPCGEN-DEV M-CONTMAST-RW-RBWM links">
+                                <div>
+                                    <ul id="brnchlctr_tool_links_1" class="links-list">
+                                        <li>
+                                            <div id="brnchlctr_tool_link_1" class="link-container">
+                                                <a class="A-LNKST-RW-ALL" href="" target="_self">
+                                                    <span class="link">
+                                                        Frequently Asked Questions about the Allpoint network
+                                                    </span>
+                                                    &nbsp;<span class="icon icon-chevron-right" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="brnchlctr_tool_columnControlColumn_3" class="cc-column">
+                            <div class="M-IMG-RW-DEV O-SMARTSPCGEN-DEV">
+                                <div id="brnchlctr_tool_image_1" class="smart-image">
+                                    <figure class="smart-image-figure">
+                                        <picture id="brnchlctr_tool_image_2">
+                                            <source srcset="https://www.us.hsbc.com/content/dam/hsbc/us/images/allpoint-logo.png" media="(min-width: 960px)" />
+                                            <source srcset="https://www.us.hsbc.com/content/dam/hsbc/us/images/allpoint-logo.png" media="(min-width: 480px)" />
+                                            <source srcset="https://www.us.hsbc.com/content/dam/hsbc/us/images/allpoint-logo.png" />
+
+                                            <img id="brnchlctr_tool_image_3" class="A-IMAGE-RW-ALL smart-image-img" role="img" src="https://www.us.hsbc.com/content/dam/hsbc/us/images/allpoint-logo.png" alt="Allpoint logo" />
+                                        </picture>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cc-wrapper O-COLCTRL-RW-DEV">
+                <div id="brnchlctr_tool_columnControl_3">
+                    <div class="cc cc-columns-100">
+                        <div id="brnchlctr_tool_columnControlColumn_4" class="cc-column">
+                            <div class="O-TITLE-RW-DEV O-SMARTSPCGEN-DEV">
+                                <div id="brnchlctr_tool_title_2">
+                                    <h2 class="A-BBST28R-RW-ALL">
+                                        Find an HSBC Wealth Center or ATM
+                                    </h2>
+                                    <div class="row">
+                                        <div class="sm-12 organismsContainer"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+                  <!-- Leaflet CSS -->
+                  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+                  <!-- Esri Leaflet Geocoder CSS -->
+                  <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css" />
+                  <style>
+                        body {
+                          margin: 0;
+                          font-family: Arial, sans-serif;
+                        }
+                        .container {
+                          display: flex;
+                          flex-direction: row;
+                          height: 100vh;
+                        }
+                        .sidebar {
+                          width: 300px;
+                          padding: 20px;
+                          background-color: #f8f8f8;
+                          box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+                          overflow-y: auto;
+                        }
+                        .sidebar h2 {
+                          color: #d32f2f;
+                        }
+                        .sidebar input, .sidebar button {
+                          width: 100%;
+                          padding: 10px;
+                          margin-bottom: 10px;
+                          border: 1px solid #ccc;
+                          border-radius: 4px;
+                        }
+                        .sidebar button {
+                          background-color: #d32f2f;
+                          color: white;
+                          border: none;
+                          cursor: pointer;
+                        }
+                        .sidebar a {
+                          color: #d32f2f;
+                          text-decoration: none;
+                          display: block;
+                          margin-top: 10px;
+                        }
+                        #map {
+                          flex: 1;
+                        }
+                        @media (max-width: 768px) {
+                          .container {
+                            flex-direction: column;
+                          }
+                          .sidebar {
+                            width: 100%;
+                            height: auto;
+                          }
+                          #map {
+                            height: 60vh;
+                          }
+                        }
+                  </style>
+
+                  <div class="container">
+                        <div class="sidebar">
+                          <h2>Find an HSBC Wealth Center or ATM</h2>
+                          <input id="search-box" type="text" placeholder="Enter ZIP Code or City" />
+                          <button onclick="searchLocation()">Search</button>
+                          <a href="#" onclick="useMyLocation()">📍 Use my location</a>
+                          <div id="results"></div>
+                        </div>
+                        <div id="map"></div>
+                  </div>
+
+                  <!-- Leaflet JS -->
+                  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                  <!-- Esri Leaflet JS -->
+                  <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
+                  <!-- Esri Leaflet Geocoder JS -->
+                  <script src="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.js"></script>
+                  <script>
+                        // Initialize the map
+                        const map = L.map('map').setView([39.8283, -98.5795], 4); // Centered on USA
+
+                        // Add OpenStreetMap tile layer
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                          attribution: '© OpenStreetMap contributors'
+                        }).addTo(map);
+
+                        // Real HSBC locations
+                        const hsbcLocations = [
+                          { name: "HSBC New York", zip: "10001", coords: [40.7506, -73.9972] },
+                          { name: "HSBC Los Angeles", zip: "90001", coords: [34.0522, -118.2437] },
+                          { name: "HSBC Miami", zip: "33131", coords: [25.7617, -80.1918] },
+                          { name: "HSBC San Francisco", zip: "94105", coords: [37.7749, -122.4194] },
+                          { name: "HSBC Chicago", zip: "60601", coords: [41.8781, -87.6298] },
+                          { name: "HSBC Houston", zip: "77002", coords: [29.7604, -95.3698] },
+                          { name: "HSBC Seattle", zip: "98101", coords: [47.6062, -122.3321] },
+                          { name: "HSBC Boston", zip: "02108", coords: [42.3601, -71.0589] },
+                          { name: "HSBC Washington D.C.", zip: "20001", coords: [38.9072, -77.0369] },
+                          { name: "HSBC Atlanta", zip: "30303", coords: [33.7490, -84.3880] }
+                        ];
+
+                        // Add markers to the map
+                        const markers = [];
+                        hsbcLocations.forEach(location => {
+                          const marker = L.marker(location.coords).addTo(map)
+                            .bindPopup(`<strong>${location.name}</strong><br>ZIP: ${location.zip}`);
+                          markers.push({ ...location, marker });
+                        });
+
+                        // Search function
+                        function searchLocation() {
+                          const input = document.getElementById("search-box").value.trim();
+                          if (!input) return;
+
+                          const match = hsbcLocations.find(loc => loc.zip === input || loc.name.toLowerCase().includes(input.toLowerCase()));
+
+                          if (match) {
+                            map.setView(match.coords, 14);
+                            match.marker.openPopup();
+                            showResult(`✅ Found: ${match.name} (${match.zip})`);
+                            return;
+                          }
+
+                          // Use Esri Geocoding
+                          L.esri.Geocoding.geocode().text(input).run((err, result) => {
+                            if (err || !result.results.length) {
+                              showResult("❌ No results found.");
+                              return;
+                            }
+
+                            const latlng = result.results[0].latlng;
+                            map.setView(latlng, 13);
+                            L.marker(latlng).addTo(map).bindPopup("📍 Location found").openPopup();
+                            showResult(`📍 Geocoded location: ${input}`);
+                          });
+                        }
+
+                        // Use current location
+                        function useMyLocation() {
+                          if (!navigator.geolocation) {
+                            alert("Geolocation is not supported by your browser.");
+                            return;
+                          }
+                          navigator.geolocation.getCurrentPosition(pos => {
+                            const latlng = [pos.coords.latitude, pos.coords.longitude];
+                            map.setView(latlng, 13);
+                            L.marker(latlng).addTo(map).bindPopup("📍 You are here").openPopup();
+                            showResult("📍 Showing your current location.");
+                          }, () => {
+                            alert("Unable to retrieve your location.");
+                          });
+                        }
+
+                        // Display result in sidebar
+                        function showResult(text) {
+                          document.getElementById("results").innerHTML = `<p>${text}</p>`;
+                        }
+                  </script>
+
+
+
+            <div class="cc-wrapper O-COLCTRL-RW-DEV">
+                <div id="brnchlctr_tool_columnControl_4">
+                    <div class="cc cc-columns-100">
+                        <div id="brnchlctr_tool_columnControlColumn_5" class="cc-column">
+                            <div class="M-CONTMAST-RW-RBWM O-SMARTSPCGEN-DEV rich-text">
+                                <div id="brnchlctr_tool_richtext_2" class="A-PAR16R-RW-ALL-WRAPPER" data-date-format="M/D/YYYY" data-time-format="HH:MM:SS A" data-zone="America/New_York"></div>
+                            </div>
+
+                            <div class="O-TITLE-RW-DEV O-SMARTSPCGEN-DEV">
+                                <div id="brnchlctr_tool_title_3">
+                                    <h2 class="A-BBST28R-RW-ALL">
+                                        You might also be interested in
+                                    </h2>
+                                    <div class="row">
+                                        <div class="sm-12 organismsContainer"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cc-wrapper O-COLCTRL-RW-DEV">
+                <div id="brnchlctr_tool_columnControl_5">
+                    <div class="cc cc-columns-25-25-25-25">
+                        <div id="brnchlctr_tool_columnControlColumn_6" class="cc-column">
+                            <div class="O-SMARTSPCGEN-DEV M-CONTMAST-RW-RBWM links">
+                                <div>
+                                    <ul id="brnchlctr_tool_links_2" class="links-list">
+                                        <li>
+                                            <div id="brnchlctr_tool_link_2" class="link-container">
+                                                <a class="A-LNKC28L-RW-ALL" href="/htm/savings/" target="_self" data-pid="H1US00421">
+                                                    <span class="link">
+                                                        Savings
+                                                    </span>
+                                                    &nbsp;<span class="icon icon-chevron-right-small" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="M-CONTMAST-RW-RBWM O-SMARTSPCGEN-DEV rich-text">
+                                <div id="brnchlctr_tool_richtext_3" class="A-PAR16R-RW-ALL-WRAPPER" data-date-format="M/D/YYYY" data-time-format="HH:MM:SS A" data-zone="America/New_York">
+                                    <p class="A-PAR16R-RW-ALL">Learn about our savings accounts and apply for an account online.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="brnchlctr_tool_columnControlColumn_7" class="cc-column">
+                            <div class="O-SMARTSPCGEN-DEV M-CONTMAST-RW-RBWM links">
+                                <div>
+                                    <ul id="brnchlctr_tool_links_3" class="links-list">
+                                        <li>
+                                            <div id="brnchlctr_tool_link_3" class="link-container">
+                                                <a class="A-LNKC28L-RW-ALL" href="/html/creditcard/" target="_self" data-pid="H1US00422">
+                                                    <span class="link">
+                                                        Credit cards
+                                                    </span>
+                                                    &nbsp;<span class="icon icon-chevron-right-small" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="M-CONTMAST-RW-RBWM O-SMARTSPCGEN-DEV rich-text">
+                                <div id="brnchlctr_tool_richtext_4" class="A-PAR16R-RW-ALL-WRAPPER" data-date-format="M/D/YYYY" data-time-format="HH:MM:SS A" data-zone="America/New_York">
+                                    <p class="A-PAR16R-RW-ALL">Enjoy a competitive range of rewards and benefits that complement your lifestyle.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="brnchlctr_tool_columnControlColumn_8" class="cc-column">
+                            <div class="O-SMARTSPCGEN-DEV M-CONTMAST-RW-RBWM links">
+                                <div>
+                                    <ul id="brnchlctr_tool_links_4" class="links-list">
+                                        <li>
+                                            <div id="brnchlctr_tool_link_4" class="link-container">
+                                                <a class="A-LNKC28L-RW-ALL" href="/html/mortgage/" target="_self" data-pid="H1US00423">
+                                                    <span class="link">
+                                                        Mortgages
+                                                    </span>
+                                                    &nbsp;<span class="icon icon-chevron-right-small" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="M-CONTMAST-RW-RBWM O-SMARTSPCGEN-DEV rich-text">
+                                <div id="brnchlctr_tool_richtext_5" class="A-PAR16R-RW-ALL-WRAPPER" data-date-format="M/D/YYYY" data-time-format="HH:MM:SS A" data-zone="America/New_York">
+                                    <p class="A-PAR16R-RW-ALL">Home loans to suit your personal needs.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="brnchlctr_tool_columnControlColumn_9" class="cc-column">
+                            <div class="O-SMARTSPCGEN-DEV M-CONTMAST-RW-RBWM links">
+                                <div>
+                                    <ul id="brnchlctr_tool_links_5" class="links-list">
+                                        <li>
+                                            <div id="brnchlctr_tool_link_5" class="link-container">
+                                                <a class="A-LNKC28L-RW-ALL" href="/html/solution/" target="_self" data-pid="H1US00424">
+                                                    <span class="link">
+                                                        Financial planning
+                                                    </span>
+                                                    &nbsp;<span class="icon icon-chevron-right-small" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="M-CONTMAST-RW-RBWM O-SMARTSPCGEN-DEV rich-text">
+                                <div id="brnchlctr_tool_richtext_6" class="A-PAR16R-RW-ALL-WRAPPER" data-date-format="M/D/YYYY" data-time-format="HH:MM:SS A" data-zone="America/New_York">
+                                    <p class="A-PAR16R-RW-ALL">Work with a Wealth Relationship Manager to assess your current finances and develop a personalized financial plan.</p>
+                                    <p class="A-PAR16R-RW-ALL">Investments are not insured by the FDIC; are not deposits; and may lose value.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cc-wrapper O-COLCTRL-RW-DEV">
+                <div id="brnchlctr_tool_columnControl_6">
+                    <div class="cc cc-columns-100">
+                        <div id="brnchlctr_tool_columnControlColumn_10" class="cc-column">
+                            <div class="M-CONTMAST-RW-RBWM O-SMARTSPCGEN-DEV rich-text">
+                                <div id="brnchlctr_tool_richtext_7" class="A-PAR16R-RW-ALL-WRAPPER" data-date-format="M/D/YYYY" data-time-format="HH:MM:SS A" data-zone="America/New_York">
+                                    <p class="A-PAR14R-RW-ALL">
+                                        <strong>
+                                            <br />
+                                            <a id="fn-1"></a>1
+                                        </strong>
+                                        ATM National, LLC, dba Allpoint
+                                    </p>
+                                    <p class="A-PAR14R-RW-ALL">Deposit products are offered in the U.S. by HSBC Bank USA, N.A. Member FDIC</p>
+                                </div>
+                            </div>
+
+                            <div class="O-SMARTSPCGEN-DEV M-BACKTOTOP-RW-RBWM">
+                                <div id="brnchlctr_tool_backtotop_1">
+                                    <div id="brnchlctr_tool_link_6" class="link-container">
+                                        <a class="A-LNKAU-RW-ALL" href="#">
+                                            <span aria-hidden="true" class="link">
+                                                Back to top
+                                            </span>
+                                            &nbsp;<span class="icon icon-anchor-up" aria-hidden="true"></span>
+                                            <span class="visuallyhidden">Back to top of the page </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+   <script src="{% static 'hsbc/etc.clientlibs1/dpws/clientlibs-public/clientlib-all.min.c0dcaa378149e069ef2eb177d519d840.js' %}"></script>
+       <link rel="stylesheet" href="{% static 'hsbc/etc.clientlibs1/dpws/clientlibs-public/clientlib-conthub.min.407e8b03f072827daab813f2654e51d7.css' %}" type="text/css">
+
+{% include "core/footer.html" %}

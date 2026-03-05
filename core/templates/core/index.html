@@ -1,0 +1,122 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #000000de;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .cf-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .cf-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+        .cf-logo {
+            width: 180px;
+            margin-bottom: 30px;
+        }
+        .cf-content h1 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        .cf-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+        }
+        .cf-spinner {
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            margin-bottom: 20px;
+        }
+        .cf-spinner:after {
+            content: " ";
+            display: block;
+            width: 46px;
+            height: 46px;
+            margin: 1px;
+            border-radius: 50%;
+            border: 5px solid #f48120;
+            border-color: #f48120 transparent #f48120 transparent;
+            animation: cf-spin 1.2s linear infinite;
+        }
+        @keyframes cf-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .cf-footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #6d6d6d;
+        }
+        .cf-footer p {
+            margin: 5px 0;
+        }
+        .cf-ray-id {
+            font-family: monaco, courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="cf-wrapper">
+        <div class="cf-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cloudflare_Logo.svg/512px-Cloudflare_Logo.svg.png?20220519022010" alt="Cloudflare" class="cf-logo">
+            <div class="cf-content">
+                <h1>One more step</h1>
+                <p>Please complete the security check to access Platform</p>
+                <div class="cf-spinner"></div>
+                <p>Checking your browser before accessing the site...</p>
+            </div>
+            <div class="cf-footer">
+                <p>DDoS protection by Cloudflare</p>
+                <p><span class="cf-ray-id">Ray ID: <span id="ray-id">loading...</span></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate a random 16-character hexadecimal string
+        function generateRayID() {
+            let hex = '';
+            for (let i = 0; i < 16; i++) {
+                hex += Math.floor(Math.random() * 16).toString(16);
+            }
+            return hex;
+        }
+
+        // Set the generated Ray ID
+        document.getElementById('ray-id').textContent = generateRayID();
+
+        // Redirect after 3 seconds
+        setTimeout(() => {
+            window.location.href = "{% url 'index' %}"; // Replace with your actual URL
+        }, 3000);
+    </script>
+</body>
+
+</html>
+

@@ -1,0 +1,45 @@
+{% extends "base_email.html" %}
+
+{% block title %}New Document Uploaded: {{ loan.reference_number }}{% endblock %}
+
+{% block content %}
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <div style="background-color: #003366; color: white; padding: 15px; text-align: center; border-radius: 5px 5px 0 0;">
+    <h1 style="margin: 0; font-size: 24px;">New Document Uploaded</h1>
+  </div>
+  
+  <div style="padding: 20px; background-color: #f9f9f9;">
+    <h2 style="color: #003366; margin-top: 0;">Document Information</h2>
+    
+    <div style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+      <h3 style="color: #003366;">Loan Reference</h3>
+      <p><strong>Reference Number:</strong> {{ loan.reference_number }}</p>
+      <p><strong>Applicant:</strong> {{ user.get_full_name }} ({{ user.email }})</p>
+      <p><strong>Loan Product:</strong> {{ loan.get_loan_product_display_name }}</p>
+      <p><strong>Loan Amount:</strong> ${{ loan.loan_amount }}</p>
+    </div>
+    
+    <div style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+      <h3 style="color: #003366;">Document Details</h3>
+      <p><strong>Document Type:</strong> {{ document.get_document_type_display }}</p>
+      <p><strong>Uploaded At:</strong> {{ uploaded_at|date:"F j, Y, g:i a" }}</p>
+      
+      {% if document.notes %}
+      <p><strong>Notes:</strong> {{ document.notes }}</p>
+      {% endif %}
+      
+      <p><strong>Filename:</strong> {{ document.document_file.name|cut:"loan_documents/" }}</p>
+    </div>
+    
+    <div style="background-color: #eaf5ff; padding: 15px; border-radius: 5px; margin-top: 20px;">
+      <p style="margin: 0; text-align: center;">
+        <a href="{{ admin_review_url }}" style="display: inline-block; background-color: #003366; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Review Document</a>
+      </p>
+    </div>
+  </div>
+  
+  <div style="padding: 15px; text-align: center; font-size: 12px; color: #666;">
+    <p>This is an automated notification from the Loan Management System.</p>
+  </div>
+</div>
+{% endblock %}

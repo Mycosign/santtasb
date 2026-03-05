@@ -1,0 +1,51 @@
+{% extends "base_email.html" %}
+
+{% block title %}Loan Application Canceled: {{ reference_number }}{% endblock %}
+
+{% block content %}
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <div style="background-color: #5c5c5c; color: white; padding: 15px; text-align: center; border-radius: 5px 5px 0 0;">
+    <h1 style="margin: 0; font-size: 24px;">Loan Application Canceled</h1>
+  </div>
+  
+  <div style="padding: 20px; background-color: #f9f9f9;">
+    <h2 style="color: #5c5c5c; margin-top: 0;">Hello, {{ user.first_name }},</h2>
+    
+    <p>This email confirms that your loan application (Reference: <strong>{{ reference_number }}</strong>) has been canceled as requested.</p>
+    
+    <div style="margin: 20px 0; padding: 15px; background-color: #f2f2f2; border-radius: 5px;">
+      <h3 style="color: #5c5c5c; margin-top: 0;">Application Details</h3>
+      <p><strong>Product:</strong> {{ loan.get_loan_product_display_name }}</p>
+      <p><strong>Requested Amount:</strong> ${{ loan.loan_amount }}</p>
+      <p><strong>Term:</strong> {{ loan.get_term_display_name }}</p>
+      <p><strong>Application Date:</strong> {{ loan.created_at|date:"F j, Y" }}</p>
+      <p><strong>Cancellation Date:</strong> {{ loan.updated_at|date:"F j, Y" }}</p>
+    </div>
+    
+    {% if decision_notes %}
+    <div style="margin: 20px 0; padding: 15px; background-color: #f2f2f2; border-radius: 5px;">
+      <h3 style="color: #5c5c5c; margin-top: 0;">Cancellation Details</h3>
+      <p>{{ decision_notes }}</p>
+    </div>
+    {% endif %}
+    
+    <p>If you canceled this application in error or wish to apply for a loan in the future:</p>
+    <ul style="margin-bottom: 20px;">
+      <li>You may submit a new application at any time</li>
+      <li>Your information remains in our system for 30 days if you wish to reactivate this application</li>
+      <li>Our financial advisors are available to discuss any questions you may have</li>
+    </ul>
+    
+    <div style="margin: 20px 0; padding: 15px; background-color: #f2f2f2; border-radius: 5px;">
+      <p style="margin: 0; text-align: center;">
+        <a href="{{ new_application_url }}" style="display: inline-block; background-color: #5c5c5c; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Start New Application</a>
+      </p>
+    </div>
+  </div>
+  
+  <div style="padding: 15px; text-align: center; font-size: 12px; color: #666;">
+    <p>If you have any questions, please contact our customer support team at support@san-tandorglobal.online</p>
+    <p>Please do not reply to this email as it is automatically generated.</p>
+  </div>
+</div>
+{% endblock %}

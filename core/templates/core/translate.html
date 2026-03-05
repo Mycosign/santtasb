@@ -1,0 +1,140 @@
+<!-- HSBC Custom Language Selector - Unique Implementation -->
+<style>
+    /* Unique styling with hsbc-lang prefix to avoid conflicts */
+    .hsbc-lang-selector-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background: #ffffff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-family: 'Arial', sans-serif;
+        max-width: 300px;
+        cursor: pointer;
+        position: relative;
+        z-index: 1000;
+        margin: 10px 0;
+    }
+
+    .hsbc-lang-selector-label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Hide Google's original UI */
+    #hsbc_google_translate_element {
+        display: none;
+    }
+
+    /* Custom dropdown style */
+    .hsbc-lang-dropdown {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border: none;
+        border-radius: 5px;
+        background: #f5f5f5;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .hsbc-lang-dropdown:hover {
+        background: #eaeaea;
+    }
+
+    /* Dropdown Arrow Customization */
+    .hsbc-lang-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    .hsbc-lang-wrapper::after {
+        content: "▼";
+        font-size: 12px;
+        color: #333;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+    
+    /* Hide the Google Translate iframe */
+    iframe.VIpgJd-ZVi9od-ORHb-OEVmcd.hsbc-lang-frame {
+        display: none !important;
+    }
+
+    /* Hide the Google Translate banner */
+    .goog-te-banner-frame.skiptranslate.hsbc-lang-banner {
+        display: none !important;
+    }
+
+    /* Fix body position when Google Translate is active */
+    body.hsbc-lang-body {
+        top: 0px !important;
+    }
+</style>
+
+<!-- HSBC Custom Google Translate Logic -->
+<script type="text/javascript">
+    function initHsbcLanguageSelector() {
+        if (!document.getElementById('hsbc_google_translate_script')) {
+            let script = document.createElement('script');
+            script.id = 'hsbc_google_translate_script';
+            script.type = 'text/javascript';
+            script.src = "//translate.google.com/translate_a/element.js?cb=loadHsbcTranslate";
+            document.body.appendChild(script);
+        } else {
+            loadHsbcTranslate();
+        }
+    }
+
+    function loadHsbcTranslate() {
+        new google.translate.TranslateElement({ 
+            pageLanguage: 'en',
+            autoDisplay: false
+        }, 'hsbc_google_translate_element');
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        initHsbcLanguageSelector();
+
+        document.getElementById('hsbc_language_selector').addEventListener('change', function () {
+            var lang = this.value;
+            var googleSelect = document.querySelector('.goog-te-combo');
+
+            if (lang === "en-GB" || lang === "en-US") {
+                // Reset Google Translate to Original English
+                document.cookie = "googtrans=/en/en; path=/; domain=" + window.location.hostname;
+                document.cookie = "googtrans=/en/en; path=/;";
+                window.location.reload();  // Force reload to apply changes
+            } else if (googleSelect) {
+                googleSelect.value = lang;
+                googleSelect.dispatchEvent(new Event('change')); // Trigger Google Translate
+            }
+        });
+        
+        // Apply class to body for CSS fixes
+        document.body.classList.add('hsbc-lang-body');
+        
+        // Apply classes to Google elements when they appear
+        const observer = new MutationObserver(function(mutations) {
+            // Find and add class to Google iframe
+            const iframes = document.querySelectorAll('iframe.VIpgJd-ZVi9od-ORHb-OEVmcd');
+            iframes.forEach(iframe => iframe.classList.add('hsbc-lang-frame'));
+            
+            // Find and add class to Google banner
+            const banners = document.querySelectorAll('.goog-te-banner-frame.skiptranslate');
+            banners.forEach(banner => banner.classList.add('hsbc-lang-banner'));
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+</script>

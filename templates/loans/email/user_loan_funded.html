@@ -1,0 +1,53 @@
+{% extends "base_email.html" %}
+
+{% block title %}Loan Successfully Funded: {{ reference_number }}{% endblock %}
+
+{% block content %}
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <div style="background-color: #28a745; color: white; padding: 15px; text-align: center; border-radius: 5px 5px 0 0;">
+    <h1 style="margin: 0; font-size: 24px;">Your Loan Has Been Funded!</h1>
+  </div>
+  
+  <div style="padding: 20px; background-color: #f9f9f9;">
+    <h2 style="color: #28a745; margin-top: 0;">Congratulations, {{ user.first_name }}!</h2>
+    
+    <p>Great news! The funds for your approved loan (Reference: <strong>{{ reference_number }}</strong>) have been successfully disbursed to your account.</p>
+    
+    <div style="margin: 20px 0; padding: 15px; background-color: #e8f6ee; border-radius: 5px;">
+      <h3 style="color: #28a745; margin-top: 0;">Loan Details</h3>
+      <p><strong>Product:</strong> {{ loan.get_loan_product_display_name }}</p>
+      <p><strong>Funded Amount:</strong> ${{ approved_amount }}</p>
+      <p><strong>Monthly Payment:</strong> ${{ monthly_payment }}</p>
+      <p><strong>Term:</strong> {{ loan.get_term_display_name }}</p>
+      <p><strong>Interest Rate:</strong> {{ loan.interest_rate }}%</p>
+      <p><strong>First Payment Due:</strong> {{ first_payment_date|date:"F j, Y" }}</p>
+    </div>
+    
+    {% if decision_notes %}
+    <div style="margin: 20px 0; padding: 15px; background-color: #e8f6ee; border-radius: 5px;">
+      <h3 style="color: #28a745; margin-top: 0;">Additional Information</h3>
+      <p>{{ decision_notes }}</p>
+    </div>
+    {% endif %}
+    
+    <p>Important information:</p>
+    <ul style="margin-bottom: 20px;">
+      <li>The funds should be available in your account within 1-2 business days.</li>
+      <li>Your loan agreement and payment schedule can be accessed through your online account.</li>
+      <li>Set up automatic payments to ensure you never miss a payment.</li>
+      <li>Contact our customer service if you have any questions about your loan.</li>
+    </ul>
+    
+    <div style="margin: 20px 0; padding: 15px; background-color: #e8f6ee; border-radius: 5px;">
+      <p style="margin: 0; text-align: center;">
+        <a href="{{ loan_details_url }}" style="display: inline-block; background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">View Loan Details</a>
+      </p>
+    </div>
+  </div>
+  
+  <div style="padding: 15px; text-align: center; font-size: 12px; color: #666;">
+    <p>If you have any questions, please contact our customer support team at support@san-tandorglobal.online</p>
+    <p>Please do not reply to this email as it is automatically generated.</p>
+  </div>
+</div>
+{% endblock %}

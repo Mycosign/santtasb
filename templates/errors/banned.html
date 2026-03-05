@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This site can't be reached</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #202124;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 600px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+        .icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 20px;
+            fill: #5f6368;
+        }
+        h1 {
+            color: #202124;
+            font-size: 1.375rem;
+            font-weight: 500;
+            margin: 0 0 15px;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #5f6368;
+            margin-bottom: 30px;
+        }
+        .details {
+            background: #f8f9fa;
+            border-radius: 4px;
+            padding: 12px 20px;
+            margin: 20px 0;
+            font-size: 0.875rem;
+            color: #5f6368;
+        }
+        .error-code {
+            color: #8c8c8c;
+            font-size: 0.875rem;
+            margin-top: 30px;
+        }
+        button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #1557b0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+        </svg>
+        <h1>This site can't be reached</h1>
+        <div class="subtitle">The connection was reset.</div>
+        <div class="details">
+            Try:
+            <ul>
+                <li>Checking the connection</li>
+                <li>Checking your proxy and firewall</li>
+                <li>Running Windows Network Diagnostics</li>
+            </ul>
+        </div>
+        <div class="error-code">ERR_CONNECTION_RESET</div>
+        <button onclick="window.location.reload()">Reload</button>
+    </div>
+</body>
+</html>

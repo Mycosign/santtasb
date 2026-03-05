@@ -1,0 +1,43 @@
+{% extends "base_email.html" %}
+
+{% block title %}Loan Application In Progress: {{ reference_number }}{% endblock %}
+
+{% block content %}
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+  <div style="background-color: #f39c12; color: white; padding: 15px; text-align: center; border-radius: 5px 5px 0 0;">
+    <h1 style="margin: 0; font-size: 24px;">Your Loan Application Is Being Processed</h1>
+  </div>
+  
+  <div style="padding: 20px; background-color: #f9f9f9;">
+    <h2 style="color: #f39c12; margin-top: 0;">Great news, {{ user.first_name }}!</h2>
+    
+    <p>Your loan application (Reference: <strong>{{ reference_number }}</strong>) has passed initial review and is now being processed.</p>
+    
+    <div style="margin: 20px 0; padding: 15px; background-color: #fef5e7; border-radius: 5px;">
+      <h3 style="color: #f39c12; margin-top: 0;">Application Details</h3>
+      <p><strong>Product:</strong> {{ loan.get_loan_product_display_name }}</p>
+      <p><strong>Requested Amount:</strong> ${{ loan.loan_amount }}</p>
+      <p><strong>Term:</strong> {{ loan.get_term_display_name }}</p>
+      <p><strong>Application Date:</strong> {{ loan.created_at|date:"F j, Y" }}</p>
+    </div>
+    
+    <p>What happens next?</p>
+    <ol style="margin-bottom: 20px;">
+      <li>Our underwriting team is now conducting a comprehensive review of your application.</li>
+      <li>This process typically takes 3-5 business days depending on the loan type.</li>
+      <li>You may be contacted if any additional documentation is required.</li>
+    </ol>
+    
+    <div style="margin: 20px 0; padding: 15px; background-color: #fef5e7; border-radius: 5px;">
+      <p style="margin: 0; text-align: center;">
+        <a href="{{ application_url }}" style="display: inline-block; background-color: #f39c12; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Check Application Status</a>
+      </p>
+    </div>
+  </div>
+  
+  <div style="padding: 15px; text-align: center; font-size: 12px; color: #666;">
+    <p>If you have any questions, please contact our customer support team at support@san-tandorglobal.online</p>
+    <p>Please do not reply to this email as it is automatically generated.</p>
+  </div>
+</div>
+{% endblock %}

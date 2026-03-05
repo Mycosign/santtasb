@@ -1,0 +1,243 @@
+<!DOCTYPE HTML>
+<!-- wrapper.html -->
+<html lang="en">
+{% load static %}
+{% include "core/translate.html" %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Your Credit Union | America's Credit Union</title>
+
+    <meta name="description" content="Americas Credit Union offers loan and deposit products to individuals and businesses in Texas and Missouri." />
+    <meta name="PERSmeta" content="158" data-pgid="158" data-maincat="Home Equity">
+    <meta name="apple-mobile-web-app-title" content="America's Credit Union">
+    <!-- Insert tool - head area -->
+
+    <link rel="stylesheet" href="{% static 'assetzz/jquery/jquery_custom/ui-theme/jquery-ui.css' %}" />
+    <link rel="stylesheet" href="{% static 'assetzz/jquery/jquery_plugins/jquery.timepicker-addon.css' %}" type="text/css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'assetzz/css/site.css' %}" />
+
+    <link href="https://res.cloudinary.com/ddevfrgsc/image/upload/v1737776748/ilbqrhiuybqbhhg3uuge.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://res.cloudinary.com/ddevfrgsc/image/upload/v1737776748/ilbqrhiuybqbhhg3uuge.png" rel="apple-touch-icon" />
+
+
+    <script>
+        // load global items
+        WrapperVariablesObj = {
+            "homepage": "yes"
+        };
+    </script>
+
+    <script src="{% static 'assetzz/jquery/jquery_custom/js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'assetzz/jquery/jquery_custom/ui-theme/jquery-ui.min.js' %}"></script>
+
+
+    <!--<script src="/jquery/jquery_plugins/jquery.json.min.js"></script>-->
+    <script src="{% static 'assetzz/jquery/jquery_plugins/jquery.timepicker-addon.l9.js' %}"></script>
+    <script src="{% static 'assetzz/jquery/jquery_plugins/jquery.validate.min.js' %}"></script>
+
+    <script src="{% static 'assetzz/scripts/main.js' %}"></script>
+    <script src="{% static 'assetzz/scripts/comments.js' %}"></script>
+    <script src="{% static 'assetzz/scripts/nav-megamenuv2.js' %}"></script>
+
+    <script>
+        // set up array for available responsive image widths:
+        var img_avail_widths = new Array();
+        img_avail_widths[0] = 1000;
+        img_avail_widths[1] = 990;
+        img_avail_widths[2] = 700;
+        img_avail_widths[3] = 640;
+        img_avail_widths[4] = 480;
+        img_avail_widths[5] = 400;
+        img_avail_widths[6] = 320;
+        img_avail_widths[7] = 230;
+        img_avail_widths[8] = 200;
+        img_avail_widths[9] = 160;
+        img_avail_widths[10] = 100;
+
+
+        // set up scale and classes arrays:
+        var img_cimg_scales = new Array();
+        var img_cimg_scale_classes = new Array();
+        img_cimg_scales[0] = 0.33;
+        img_cimg_scale_classes[0] = 'img_onethird';
+        img_cimg_scales[1] = 0.50;
+        img_cimg_scale_classes[1] = 'img_onehalf';
+        img_cimg_scales[2] = 0.67;
+        img_cimg_scale_classes[2] = 'img_twothirds';
+        img_cimg_scales[3] = 1.0;
+        img_cimg_scale_classes[3] = 'img_full';
+    </script>
+
+
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '0ca2a42bc213033e275bf5ed171206455d8fedef';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="{% static 'assetzz/scripts/main_custom.js' %}"></script>
+    <script src="{% static 'assetzz/scripts/pers.js' %}"></script>
+
+    <!-- font awesome kit is specific to ACU -->
+    <script src="https://kit.fontawesome.com/29617446a8.js" crossorigin="anonymous"></script>
+
+    <!-- editor.css and fonts.css also need import of fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Lexend:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+</head>
+
+<body style="position: relative; z-index: 0;" class="bodyclass_home-page-wrapper">
+    <!-- Insert tool - body area -->
+
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="ajaxInProgress_wrapper" style="display: none">
+        <div class="ajaxInProgess"></div>
+    </div>
+    <div class="just-sr"><a href="#startcontent">Skip to main content</a></div>
+
+    <div class="wrapper clearfix clear">
+        <!-- header start -->
+        <header>
+
+            <div class="header clearfix">
+
+
+                <div class="header-second-row">
+                    <div class="header-inner">
+
+                        <div class="header-logo">
+                            <a href="/"><img src="{% static 'assetzz/img/logo-side-by-side.svg' %}" width="350" alt="America's Credit Union Logo"></a>
+                        </div>
+
+                        <div class="nav-container">
+                            <div class="topnav topnav-desktop">
+                                <!-- navigation nav-top -->
+                                <div class="nav-top topnav-inner">
+                                    <ul class="nav-menu clearfix top-nav-menu">
+
+                                        
+                                        
+                                        <li class="nav-item header-icon icon-locations"><a href="/html/location" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Locations" data-bs-placement="bottom"><img src="{% static 'assetzz/img/icon-location.svg' %}" width="15" alt="Locations"></a></li>
+                                        <li class="nav-item nav-routing">Routing #311982435</li>
+
+                                    
+
+                                        <li class="nav-item nav2 last">
+                                            <a href="{% url 'contact_us' %}" class=" ">Contact Us</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="header-second-row">
+
+                                
+
+                                <a href="{% url 'accounts:register' %}" class="button button4 extra-button " data-perstag="10" data-bid="87">Join</a>
+
+                                <div class="ob-login-button">
+                                    <button 
+                                        value="LOG IN" 
+                                        class="button button2 bank-button JQslideTogglev2" 
+                                        onclick="window.location.href='{% url 'accounts:login' %}'" 
+                                        data-container-id-to-open="JQBankingLogin" 
+                                        data-container_opened_class="container-opened" 
+                                        data-autofocus="user_id">
+                                        Login
+                                    </button>
+                                </div>
+
+                                <div class="col-menu">
+                                    <div class="col-menu menu-desktop">
+                                        <button 
+                                            id="burgermenu" 
+                                            class="menu-icon" 
+                                            aria-label="Navigation menu" 
+                                            onclick="window.location.href='{% url 'accounts:login' %}'">
+                                            <img src="{% static 'assetzz/img/icon-sandwich.svg' %}" width="24" alt="menu" class="icon-sandwich">
+                                            <i class="fa-light fa-close"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-menu menu-mobile">
+                                        <button 
+                                            id="mobilemenu" 
+                                            class="menu-icon" 
+                                            aria-label="Mobile Navigation Menu" 
+                                            onclick="window.location.href='{% url 'accounts:login' %}'">
+                                            <img src="{% static 'assetzz/img/icon-sandwich.svg' %}" width="24" alt="menu" class="icon-sandwich">
+                                            <i class="fa-light fa-close"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                            <!-- banking dropdown, absolutely positioned-->
+                            <div class="header-banking">
+                                <div class="inner">
+                                    <!--BEGIN BANKING LOGIN-->
+                                    <div id="JQBankingLogin" class="oblogin hide">
+                                        <button class="olb-close JQslideToggle_close_buttonv2" data-container-id-to-close="JQBankingLogin" aria-label="Close Online Banking Login"><span class="fa fa-times-circle " role="presentation" aria-hidden="true"> </span><span class="just-sr">Close Online Banking Login</span></button>
+                                        <!-- Start Login Form -->
+                                        <div class="ob-login-box clearfix">
+
+
+
+                                            
+
+
+                                            <div id="OBmsg" style="display:none" data-notices="off">
+                                                <div>
+                                                    <i id="OBtitle" style="display:none">Banking Notice</i>
+
+                                                </div>
+                                            </div>
+
+
+                                        
+
+                                            <!-- personalized banking promo bit type -->
+                                            <div class="promotion online-banking-promo">
+                                                <div class="inner">
+
+                                                    <div class="banking-promo-image"><img src="{% static 'assetzz/content/images/original/Americas-Home-Equity-Login.jpg' %}" alt="">
+                                                    </div>
+
+
+                                                    <div class="banking-promo-content ">
+                                                        <p style="text-align: center;">There&rsquo;s power in your home&rsquo;s equity!</p>
+                                                        <p style="text-align: center;"><a href="https://hosting.bytesoftware.com/apps/bcp_34288" class="button button2 JQnewWindow" data-linktype="ext" data-perstag="16">Apply for a Home Equity Loan</a></p>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <!--END BANKING LOGIN-->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- header end -->
