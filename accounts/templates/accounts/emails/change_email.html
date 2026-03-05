@@ -1,0 +1,60 @@
+
+
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% load static %}
+{% include "core/messages.html" %}
+
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-lg">
+        <div class="nk-content-body">
+            <div class="nk-block-head nk-block-head-lg">
+                <div class="nk-block-head-content">
+                    <h2 class="nk-block-title fw-normal">Account Settings</h2>
+                    <div class="nk-block-des">
+                        <p>You have full control to manage your own account settings.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content">
+<div id="change-email-modal" class="modal">
+    <div class="modal-content">
+        <h2>New Login Location Detected</h2>
+        <p>You must update your email before accessing your account.</p>
+        <form id="change-email-form" method="POST" action="{% url 'accounts:change_email' %}">
+            {% csrf_token %}
+            <input type="email" name="new_email" placeholder="Enter new email" required>
+            <button type="submit">Update Email</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('change-email-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+
+        fetch("{% url 'accounts:change_email' %}", {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById('change-email-modal').classList.remove('open');
+                window.location.reload();
+            }
+        }).catch(error => {
+            console.error('Error updating email:', error);
+        });
+    });
+</script>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register | HSBC BANK</title>
+    <link rel="shortcut icon" href="https://res.cloudinary.com/dsbfohkyg/image/upload/v1734783523/download__4_-removebg-preview_purfj3.png" type="image/x-icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+        :root {
+            --primary-color: #db0011;
+            --secondary-color: #333;
+            --accent-color: #2d8259;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #666;
+            --white: #fff;
+            --error: #d9534f;
+            --success: #5cb85c;
+            --warning: #f0ad4e;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+        
+        .header-container {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-top {
+            background-color: var(--secondary-color);
+            padding: 5px 0;
+        }
+        
+        .header-top a {
+            color: var(--white);
+            font-size: 12px;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        
+        .header-top a:hover {
+            text-decoration: underline;
+        }
+        
+        .header-main {
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .translate-container {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            padding: 30px 15px;
+        }
+        
+        .registration-container {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+        
+        .registration-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid #a50010;
+        }
+        
+        .registration-header h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .registration-header p {
+            opacity: 0.8;
+            font-size: 16px;
+        }
+        
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        .security-badge i {
+            margin-right: 5px;
+        }
+        
+        .registration-content {
+            padding: 40px;
+        }
+        
+        .progress-bar-container {
+            margin-bottom: 40px;
+        }
+        
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            height: 4px;
+            background-color: var(--medium-gray);
+            width: 100%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .progress-step {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .step-indicator {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-color: var(--white);
+            border: 4px solid var(--medium-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .step-title {
+            color: var(--dark-gray);
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .progress-step.active .step-indicator {
+            border-color: var(--primary-color);
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-shadow: 0 0 0 3px rgba(219, 0, 17, 0.2);
+        }
+        
+        .progress-step.active .step-title {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        .progress-step.completed .step-indicator {
+            border-color: var(--accent-color);
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+        
+        .progress-step.completed .step-title {
+            color: var(--accent-color);
+        }
+        
+        .progress-step-content {
+            display: none;
+        }
+        
+        .progress-step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .form-section-title {
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--medium-gray);
+            position: relative;
+            font-size: 22px;
+        }
+        
+        .form-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .form-section-icon {
+            background-color: var(--primary-color);
+            color: var(--white);
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+            font-size: 14px;
+        }
+        
+        .form-control {
+            height: 50px;
+            border-radius: 4px;
+            border: 1px solid var(--medium-gray);
+            padding: 10px 15px;
+            width: 100%;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(219, 0, 17, 0.1);
+            outline: none;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dark-gray);
+        }
+        
+        .input-with-icon .form-control {
+            padding-left: 45px;
+        }
+        
+        .custom-file {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 50px;
+        }
+        
+        .custom-file-input {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 50px;
+            margin: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .custom-file-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1;
+            height: 50px;
+            padding: 12px 15px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--dark-gray);
+            background-color: var(--white);
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .custom-file-label::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 3;
+            display: block;
+            height: 50px;
+            padding: 12px 15px;
+            line-height: 1.5;
+            color: var(--white);
+            content: "Browse";
+            background-color: var(--primary-color);
+            border-left: inherit;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .dob-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .dob-container select {
+            flex: 1;
+        }
+        
+        .passport-preview-container {
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        #output_image {
+            max-width: 150px;
+            max-height: 200px;
+            border: 3px solid var(--medium-gray);
+            border-radius: 6px;
+            padding: 3px;
+            background-color: var(--white);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .required-field::after {
+            content: '*';
+            color: var(--primary-color);
+            margin-left: 4px;
+        }
+        
+        .help-text {
+            color: var(--dark-gray);
+            font-size: 12px;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        .btn {
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: #a50010;
+            border-color: #a50010;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(219, 0, 17, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: var(--medium-gray);
+            border-color: var(--medium-gray);
+            color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c8c8c8;
+            border-color: #c8c8c8;
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            background-color: transparent;
+        }
+        
+        .btn-outline-primary:hover {
+            color: var(--white);
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .invalid-feedback {
+            display: none;
+            color: var(--error);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        .was-validated .form-control:invalid ~ .invalid-feedback {
+            display: block;
+        }
+        
+        .was-validated .form-control:invalid {
+            border-color: var(--error);
+        }
+        
+        .registration-footer {
+            background-color: var(--light-gray);
+            padding: 25px;
+            text-align: center;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .security-features {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .security-feature {
+            display: flex;
+            align-items: center;
+            margin: 0 15px;
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+        
+        .security-feature i {
+            color: var(--accent-color);
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .password-strength {
+            height: 5px;
+            margin-top: 10px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .password-strength-meter {
+            height: 100%;
+            width: 0;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .password-strength-text {
+            font-size: 12px;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+        
+        .tooltip-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-color: var(--dark-gray);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 18px;
+            font-size: 12px;
+            margin-left: 5px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .tooltip-icon:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 100;
+            margin-bottom: 5px;
+        }
+        
+        .tooltip-icon:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--secondary-color) transparent transparent transparent;
+            z-index: 100;
+        }
+        
+        .footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 30px 0;
+            font-size: 14px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            text-align: center;
+            opacity: 0.7;
+            font-size: 12px;
+        }
+        
+        .legal-info {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 11px;
+            opacity: 0.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .registration-content {
+                padding: 20px;
+            }
+            
+            .dob-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .security-features {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .security-feature {
+                margin: 5px 0;
+            }
+            
+            .form-navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header-container">
+        <div class="header-top">
+            <div class="container">
+                <div class="d-flex justify-content-end">
+                    <a href="#"><i class="fas fa-info-circle"></i> Help</a>
+                    <a href="#"><i class="fas fa-lock"></i> Security</a>
+                    <a href="#"><i class="fas fa-phone-alt"></i> Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-main">
+                <div class="logo">
+                    <img src="https://www.hsbc.com/content/dam/hsbc/shared-assets/hsbc-logo-3.svg" alt="HSBC Bank Logo">
+                </div>
+                <div class="translate-container" id="google_translate_element"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="registration-container">
+            <div class="registration-header">
+                <h1><i class="fas fa-user-plus"></i> New Account Registration</h1>
+                <p>Join the HSBC family today and experience world-class banking services</p>
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i> Secure Application Process
+                </div>
+            </div>
+            
+            <div class="registration-content">
+                <div class="progress-bar-container">
+                    <div class="progress-steps">
+                        <div class="progress-step active" data-step="1">
+                            <div class="step-indicator">1</div>
+                            <div class="step-title">Personal Details</div>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <div class="step-indicator">2</div>
+                            <div class="step-title">Employment</div>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <div class="step-indicator">3</div>
+                            <div class="step-title">Banking Details</div>
+                        </div>
+                        <div class="progress-step" data-step="4">
+                            <div class="step-indicator">4</div>
+                            <div class="step-title">Address</div>
+                        </div>
+                        <div class="progress-step" data-step="5">
+                            <div class="step-indicator">5</div>
+                            <div class="step-title">Review & Submit</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <form method="post" enctype="multipart/form-data" id="registerForm" novalidate>
+                    {% csrf_token %}
+                    
+                    <!-- Step 1: Personal Details -->
+                    <div class="progress-step-content active" id="step-1">
+                        <h3 class="form-section-title">
+                            <span class="form-section-icon"><i class="fas fa-user"></i></span>
+                            Personal Information
+                        </h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="id_first_name" class="form-label required-field">First Name</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-user input-icon"></i>
+                                        {{ user_form.first_name }}
+                                    </div>
+                                    <div class="invalid-feedback">Please enter your first name.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="id_last_name" class="form-label required-field">Last Name</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-user input-icon"></i>
+                                        {{ user_form.last_name }}
+                                    </div>
+                                    <div class="invalid-feedback">Please enter your last name.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="id_email" class="form-label required-field">Email Address</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-envelope input-icon"></i>
+                                        {{ user_form.email }}
+                                    </div>
+                                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                                    <div class="help-text">We'll send account verification to this email.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="id_contact_no" class="form-label required-field">Mobile Number</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-phone input-icon"></i>
+                                        {{ user_form.contact_no }}
+                                    </div>
+                                    <div class="invalid-feedback">Please enter a valid phone number.</div>
+                                    <div class="help-text">For account alerts and secure verification.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required-field">Date of Birth</label>
+                            <div class="dob-container">
+                                {{ account_form.day }}
+                                {{ account_form.month }}
+                                {{ account_form.year }}
+                            </div>
+                            <div class="invalid-feedback">Please enter your complete date of birth.</div>
+                            <div class="help-text">You must be at least 18 years old to open an account.</div>
+                        </div>
+                        
+                        <div class="form-navigation text-right">
+                            <button type="button" class="btn btn-primary next-step">Continue <i class="fas fa-arrow-right ml-2"></i></button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Employment -->
+                    <div class="progress-step-content" id="step-2">
+                        <h3 class="form-section-title">
+                            <span class="form-section-icon"><i class="fas fa-briefcase"></i></span>
+                            Employment Information
+                        </h3>
+                        
+                        <div class="form-group">
+                            <label for="id_occupation" class="form-label required-field">Occupation</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-briefcase input-icon"></i>
+                                {{ account_form.occupation }}
+                            </div>
+                            <div class="invalid-feedback">Please enter your occupation.</div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="id_employer" class="form-label required-field">Employer Name</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-building input-icon"></i>
+                                        <input type="text" class="form-control" id="id_employer" name="employer" required>
+                                    </div>
+                                    <div class="invalid-feedback">Please enter your employer's name.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="id_employment_status" class="form-label required-field">Employment Status</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-user-tie input-icon"></i>
+                                        <select class="form-control" id="id_employment_status" name="employment_status" required>
+                                            <option value="">Select status</option>
+                                            <option value="full_time">Full-time</option>
+                                            <option value="part_time">Part-time</option>
+                                            <option value="self_employed">Self-employed</option>
+                                            <option value="unemployed">Unemployed</option>
+                                            <option value="retired">Retired</option>
+                                            <option value="student">Student</option>
+                                        </select>
+                                    </div>
+                                    <div class="invalid-feedback">Please select your employment status.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="id_employment_duration" class="form-label">Years with Current Employer</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-calendar-alt input-icon"></i>
+                                        <select class="form-control" id="id_employment_duration" name="employment_duration">
+                                            <option value="">Select duration</option>
+                                            <option value="less_than_1">Less than 1 year</option>
+                                            <option value="1_to_3">1-3 years</option>
+                                            <option value="3_to_5">3-5 years</option>
+                                            <option value="5_to_10">5-10 years</option>
+                                            <option value="over_10">Over 10 years</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="id_annual_income" class="form-label required-field">Annual Income</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-dollar-sign input-icon"></i>
+                                        <select class="form-control" id="id_annual_income" name="annual_income" required>
+                                            <option value="">Select income range</option>
+                                            <option value="under_25k">Under $25,000</option>
+                                            <option value="25k_to_50k">$25,000 - $50,000</option>
+                                            <option value="50k_to_75k">$50,000 - $75,000</option>
+                                            <option value="75k_to_100k">$75,000 - $100,000</option>
+                                            <option value="100k_to_150k">$100,000 - $150,000</option>
+                                            <option value="over_150k">Over $150,000</option>
+                                        </select>
+                                    </div>
+                                    <div class="invalid-feedback">Please select your income range.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary prev-step"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+                            <button type="button" class="btn btn-primary next-step">Continue <i class="fas fa-arrow-right ml-2"></i></button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Banking Details -->
+                    <div class="progress-step-content" id="step-3">
+                        <h3 class="form-section-title">
+                            <span class="form-section-icon"><i class="fas fa-piggy-bank"></i></span>
+                            Banking Preferences
+                        </h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="id_username" class="form-label required-field">Username</label>
+                                    <div class="input-with-icon">

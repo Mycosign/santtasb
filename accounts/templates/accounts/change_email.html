@@ -1,0 +1,151 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+
+{% include "core/flash-messages.html" %}
+
+<style>
+  /* Add the following CSS */
+  .nk-content-body {
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .email-change-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .email-change-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .email-change-subtitle {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .form-input:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .btn-submit {
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .btn-submit:hover {
+    color: #fff;
+    background-color: #0056b3;
+    border-color: #004d99;
+  }
+
+  .btn-submit:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+  }
+
+  /* Mobile Responsive Styles */
+  @media (max-width: 767px) {
+    .nk-content-body {
+      padding: 1rem;
+    }
+
+    .email-change-container {
+      padding: 1rem;
+    }
+
+    .email-change-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .email-change-subtitle {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-input {
+      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .btn-submit {
+      font-size: 0.9rem;
+      padding: 0.375rem 0.75rem;
+    }
+  }
+</style>
+
+<div class="nk-content nk-content-fluid">
+  <div class="container-xl wide-lg">
+    <div class="nk-content-body">
+      <div class="nk-block-head nk-block-head-lg">
+        <div class="nk-block-head-content">
+          <h2 class="nk-block-title fw-normal">-</h2>
+          <div class="nk-block-des">
+            <p>Your account is currently suspended. To reactivate your account, please update your email address for verification. Once updated, your account will be activated.</p>
+          </div>
+        </div>
+      </div>
+      <div class="email-change-container">
+        <h2 class="email-change-title">Update Email Address</h2>
+        <p class="email-change-subtitle">
+          Enter your new email address to update your login location and verify your account.
+        </p>
+        <form method="post" class="email-change-form">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="{{ form.new_email.id_for_label }}" class="form-label">{{ form.new_email.label }}</label>
+            <input type="email" name="{{ form.new_email.name }}" id="{{ form.new_email.id_for_label }}" class="form-input" required>
+            {% for error in form.new_email.errors %}
+              <div class="error-message">{{ error }}</div>
+            {% endfor %}
+          </div>
+          <button type="submit" class="btn-submit">Update Email</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+

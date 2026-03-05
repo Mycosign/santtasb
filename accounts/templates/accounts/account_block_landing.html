@@ -1,0 +1,88 @@
+{% load static %}
+
+{% block extra_css %}
+{% include "core/translate.html" %}
+
+<style>
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+    .modal-content {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        animation: modalFadeIn 0.3s ease-out;
+    }
+    @keyframes modalFadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-title {
+        color: #333;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .modal-text {
+        color: #666;
+        margin-bottom: 1.5rem;
+    }
+    .modal-icon {
+        font-size: 3rem;
+        color: #dc3545;
+        margin-bottom: 1rem;
+    }
+    .btn-create-ticket {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .btn-create-ticket:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+{% include "core/messages.html" %}
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '2150935c5be8d3a49e70a4ccc077e06f31616623';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+
+<div class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-icon">&#128683;</div>
+        <h2 class="modal-title">Account Blocked</h2>
+        <p class="modal-text">Your account has been blocked. To resolve this and regain access, please create a support ticket, or for faster assistance, reach out to our live chat support to speak with us directly.</p>
+        <a href="{% url 'transactions:ticket' %}" class="btn-create-ticket">Create Support Ticket</a>
+    </div>
+</div>
+{% endblock %}

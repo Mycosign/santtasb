@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Login Location</title>
+  {% include "core/translate.html" %}
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+        background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .modal-content {
+      background-color: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      animation: scaleIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.9); }
+      to { transform: scale(1); }
+    }
+
+    .modal-icon {
+      font-size: 3rem;
+      color: #4f46e5;
+      margin-bottom: 1rem;
+    }
+
+    .modal-title {
+      color: #0f172a;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .modal-text {
+      color: #64748b;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-button {
+      display: inline-block;
+      background-color: #4f46e5;
+      color: #ffffff;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .modal-button:hover {
+      background-color: #4338ca;
+    }
+  </style>
+</head>
+<body>
+  <div class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-icon">&#128274;</div>
+      <h2 class="modal-title">Security Alert</h2>
+      <p class="modal-text">We've detected a new login location. For your account's security, please update your account details for verification before continuing.</p>
+      <a href="{% url 'accounts:change_email' %}" class="modal-button">Verify Account</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,719 @@
+
+
+<!DOCTYPE html>
+{% load static %}
+{% include "core/translate.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register |  Online Banking</title>
+    <link rel="shortcut icon" href="https://res.cloudinary.com/ddevfrgsc/image/upload/v1737776748/ilbqrhiuybqbhhg3uuge.png" type="image/x-icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: red;
+            --secondary-color: #0056b3;
+            --accent-color: #ffc107;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: var(--text-color);
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .card-header {
+            background: linear-gradient(60deg, var(--primary-color), var(--secondary-color));
+            padding: 30px;
+            position: relative;
+        }
+        .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: inherit;
+            filter: blur(10px);
+        }
+        .card-body {
+            padding: 40px;
+        }
+        .btn-primary {
+            background: linear-gradient(60deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            padding: 12px 30px;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+        }
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(3, 61, 117, 0.25);
+        }
+        .custom-file-label {
+            border-radius: 10px;
+            padding: 12px 15px;
+        }
+        #output_image {
+            border-radius: 15px;
+            max-height: 200px;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+        }
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent-color);
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+        }
+        .floating-label {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .floating-label input, .floating-label select {
+            height: 50px;
+            font-size: 16px;
+        }
+        .floating-label label {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            background-color: white;
+            padding: 0 5px;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        .floating-label input:focus ~ label,
+        .floating-label input:not(:placeholder-shown) ~ label,
+        .floating-label select:focus ~ label,
+        .floating-label select:not([value=""]):valid ~ label {
+            top: 0;
+            font-size: 12px;
+            color: var(--secondary-color);
+        }
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            right: -50%;
+            height: 2px;
+            background-color: #e0e0e0;
+            z-index: -1;
+        }
+        .progress-step:last-child::after {
+            display: none;
+        }
+        .progress-step-icon {
+            width: 30px;
+            height: 30px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            color: white;
+            font-weight: bold;
+        }
+        .progress-step.active .progress-step-icon {
+            background-color: var(--accent-color);
+        }
+        .progress-step.completed .progress-step-icon {
+            background-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-white mb-0">
+                            <i class="fas fa-user-plus mr-2"></i>Create Your User Account
+                        </h2>
+                        <p class="text-white-50 mt-2 mb-0">Join the Santander Online Banking family today</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="progress-indicator">
+                            <div class="progress-step active">
+                                <div class="progress-step-icon">1</div>
+                                <div>Personal</div>
+                            </div>
+                            <div class="progress-step">
+                                <div class="progress-step-icon">2</div>
+                                <div>Employment</div>
+                            </div>
+                            <div class="progress-step">
+                                <div class="progress-step-icon">3</div>
+                                <div>Banking</div>
+                            </div>
+                            <div class="progress-step">
+                                <div class="progress-step-icon">4</div>
+                                <div>Address</div>
+                            </div>
+                        </div>
+<form method="post" enctype="multipart/form-data" id="registerForm">
+    {% csrf_token %}
+    
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        <h5 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Please fix the errors below:</h5>
+        <ul>
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <li>{{ field|title }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
+    <h4 class="section-title"><i class="fas fa-user mr-2"></i>Personal Details</h4>
+    <div class="form-row">
+        <div class="form-group col-md-6 floating-label">
+            {{ user_form.username }}
+            <label for="id_username">Username </label>
+            {% if user_form.username.errors %}
+            <div class="invalid-feedback d-block">
+                {% for error in user_form.username.errors %}
+                    <p><i class="fas fa-exclamation-circle"></i> {{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="form-group col-md-6 floating-label">
+            {{ user_form.email }}
+            <label for="id_email">Email Address</label>
+            {% if user_form.email.errors %}
+            <div class="invalid-feedback d-block">
+                {% for error in user_form.email.errors %}
+                    <p><i class="fas fa-exclamation-circle"></i> {{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group col-md-6 floating-label">
+            {{ user_form.full_name }}
+            <label for="id_full_name">Full Name</label>
+            {% if user_form.full_name.errors %}
+            <div class="invalid-feedback d-block">
+                {% for error in user_form.full_name.errors %}
+                    <p><i class="fas fa-exclamation-circle"></i> {{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="form-group col-md-6 floating-label">
+            {{ user_form.age }}
+            <label for="id_age">Age</label>
+            {% if user_form.age.errors %}
+            <div class="invalid-feedback d-block">
+                {% for error in user_form.age.errors %}
+                    <p><i class="fas fa-exclamation-circle"></i> {{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group col-md-6 floating-label">
+            {{ user_form.password1 }}
+            <label for="id_password1">Password</label>
+            {% if user_form.password1.errors %}
+            <div class="invalid-feedback d-block">
+                {% for error in user_form.password1.errors %}
+                    <p><i class="fas fa-exclamation-circle"></i> {{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+        </div>
+        <div class="form-group col-md-6 floating-label">
+            {{ user_form.password2 }}
+            <label for="id_password2">Confirm Password</label>
+            {% if user_form.password2.errors %}
+            <div class="invalid-feedback d-block">
+                {% for error in user_form.password2.errors %}
+                    <p><i class="fas fa-exclamation-circle"></i> {{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group col-md-6 floating-label">
+            {{ user_form.contact_no }}
+            <label for="id_contact_no">Contact Number</label>
+            {% if user_form.contact_no.errors %}
+            <div class="invalid-feedback d-block">
+                {% for error in user_form.contact_no.errors %}
+                    <p><i class="fas fa-exclamation-circle"></i> {{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="form-group col-md-6 floating-label">
+            {{ address_form.country }}
+            <label for="id_country">Country</label>
+            {% if address_form.country.errors %}
+            <div class="invalid-feedback d-block">
+                {% for error in address_form.country.errors %}
+                    <p><i class="fas fa-exclamation-circle"></i> {{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="form-group col-md-12">
+        <div class="mb-3">
+            <label for="id_picture" class="form-label">Profile Image</label>
+            <div class="input-group">
+                <input type="file" class="form-control" id="id_picture" name="{{ account_form.picture.html_name }}" accept="image/*" required style="display: none;">
+                <label class="input-group-text" for="id_picture"><i class="fas fa-camera"></i></label>
+            </div>
+            <div class="upload-container" id="upload_container">
+                <img src="{% static 'assets/passport/sample.png' %}" class="img-fluid mt-2" id="output_image" alt="Profile Image Preview" style="cursor: pointer;">
+                <div class="upload-text">
+                    <i class="fas fa-upload"></i> Click to upload
+                </div>
+            </div>
+            {% if account_form.picture.errors %}
+            <div class="invalid-feedback d-block">
+                {% for error in account_form.picture.errors %}
+                    <p><i class="fas fa-exclamation-circle"></i> {{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <script>
+            document.getElementById('upload_container').addEventListener('click', function() {
+                document.getElementById('id_picture').click();
+            });
+
+            document.getElementById('id_picture').addEventListener('change', function(event) {
+                if (event.target.files && event.target.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('output_image').src = e.target.result;
+                    };
+                    reader.readAsDataURL(event.target.files[0]);
+                }
+            });
+        </script>
+
+        <style>
+            .upload-container {
+                position: relative;
+                width: 150px;
+                height: 150px;
+                border: 2px dashed #ccc;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+            .upload-container img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+            .upload-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                color: black;
+                font-size: 19px;
+            }
+            .upload-text i {
+                display: block;
+                margin-bottom: 5px;
+                font-size: 24px;
+            }
+            .invalid-feedback {
+                color: #dc3545;
+                font-size: 0.875rem;
+                margin-top: 0.25rem;
+            }
+            .password-requirements {
+                padding-left: 1.25rem;
+                margin-top: 0.5rem;
+                font-size: 0.75rem;
+            }
+            .password-requirements li {
+                margin-bottom: 0.25rem;
+            }
+            .alert-danger {
+                background-color: #f8d7da;
+                border-color: #f5c6cb;
+                color: #721c24;
+                padding: 0.75rem 1.25rem;
+                margin-bottom: 1rem;
+                border-radius: 0.25rem;
+            }
+            .alert-heading {
+                margin-bottom: 0.5rem;
+                font-size: 1.1rem;
+            }
+        </style>
+    </div>
+    
+    <div id="registerResult"></div>
+    
+    <div class="text-center mt-5">
+        <button type="submit" class="btn btn-primary btn-lg px-5" id="btn">
+            <i class="fas fa-check mr-2"></i>Submit Registration
+        </button>
+    </div>
+    <br>
+    <div style="color: white; background-color: " id="google_translate_element2"></div>
+</form>
+                    </div>
+                    <div class="card-footer text-center py-4">
+                        <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Already have an account? Login
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                                                                
+                                            <style>
+                                                /* 🔥 Unique Styling for Custom Language Selector */
+                                                .custom-translate-container {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    gap: 10px;
+                                                    padding: 6px 12px;
+                                                    border: 1px solid #ddd;
+                                                    border-radius: 6px;
+                                                    background: #ffffff;
+                                                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                                                    font-family: 'Arial', sans-serif;
+                                                    max-width: 300px;
+                                                    cursor: pointer;
+                                                    left: 50px;
+                                                }
+
+                                                .custom-translate-container label {
+                                                    font-size: 14px;
+                                                    font-weight: bold;
+                                                    color: #333;
+                                                }
+
+                                                /* Hide Google’s original UI */
+                                                #custom_google_translate {
+                                                    display: none;
+                                                }
+
+                                                /* Custom dropdown style */
+                                                .custom-language-selector {
+                                                    width: 100%;
+                                                    padding: 8px;
+                                                    font-size: 14px;
+                                                    border: none;
+                                                    border-radius: 5px;
+                                                    background: #f5f5f5;
+                                                    cursor: pointer;
+                                                    outline: none;
+                                                    transition: all 0.3s ease-in-out;
+                                                }
+
+                                                .custom-language-selector:hover {
+                                                    background: #eaeaea;
+                                                }
+
+                                                /* Dropdown Arrow Customization */
+                                                .custom-language-wrapper {
+                                                    position: relative;
+                                                    width: 100%;
+                                                }
+
+                                                .custom-language-wrapper::after {
+                                                    content: "▼";
+                                                    font-size: 12px;
+                                                    color: #333;
+                                                    position: absolute;
+                                                    right: 10px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    pointer-events: none;
+                                                }
+                                            </style>
+
+                                            <!-- ✅ Custom Google Translate Logic -->
+                                            <script type="text/javascript">
+                                                function initCustomGoogleTranslate() {
+                                                    if (!document.getElementById('custom_google_translate_script')) {
+                                                        let script = document.createElement('script');
+                                                        script.id = 'custom_google_translate_script';
+                                                        script.type = 'text/javascript';
+
+                                                        script.src = "//translate.google.com/translate_a/element.js?cb=loadCustomTranslate";
+                                                        document.body.appendChild(script);
+                                                    } else {
+                                                        loadCustomTranslate();
+                                                    }
+                                                }
+
+                                                function loadCustomTranslate() {
+                                                    new google.translate.TranslateElement({ pageLanguage: 'en' }, 'custom_google_translate');
+                                                }
+
+                                                document.addEventListener("DOMContentLoaded", function () {
+                                                    initCustomGoogleTranslate();
+
+                                                    document.getElementById('custom_language_select').addEventListener('change', function () {
+                                                        var lang = this.value;
+                                                        var googleSelect = document.querySelector('.goog-te-combo');
+
+                                                        if (lang === "en-GB" || lang === "en-US") {
+                                                            // 🚀 Reset Google Translate to Original English (Without Reload)
+                                                            document.cookie = "googtrans=/en/en; path=/; domain=" + window.location.hostname;
+                                                            window.location.reload();  // Force reload to apply changes
+                                                        } else if (googleSelect) {
+                                                            googleSelect.value = lang;
+                                                            googleSelect.dispatchEvent(new Event('change')); // Trigger Google Translate
+                                                        }
+                                                    });
+                                                });
+                                            </script>
+                                            <style>
+                                                /* Hide the Google Translate iframe */
+                                                iframe.VIpgJd-ZVi9od-ORHb-OEVmcd {
+                                                    display: none !important;
+                                                }
+
+                                                /* Hide the Google Translate banner */
+                                                .goog-te-banner-frame.skiptranslate {
+                                                    display: none !important;
+                                                }
+
+                                                /* Hide the Google Translate widget */
+                                                body {
+                                                    top: 0px !important;
+                                                }
+                                            </style>
+                                            <!-- ✅ Custom Translation UI -->
+                                            <div class="custom-translate-container">
+                                                <label>🌎 Language:</label>
+                                                <div class="custom-language-wrapper">
+                                            <select id="custom_language_select" class="custom-language-selector">
+                                                <!-- 🌍 Asia (Expanded) -->
+                                                <optgroup label="🌏 Asia">
+                                                    <option value="zh-CN">🇨🇳 Chinese (Simplified)</option>
+                                                    <option value="zh-TW">🇹🇼 Chinese (Traditional)</option>
+                                                    <option value="ja">🇯🇵 Japanese</option>
+                                                    <option value="ko">🇰🇷 Korean</option>
+                                                    <option value="hi">🇮🇳 Hindi</option>
+                                                    <option value="bn">🇧🇩 Bengali</option>
+                                                    <option value="ur">🇵🇰 Urdu</option>
+                                                    <option value="ar">🇦🇪 Arabic</option>
+                                                    <option value="th">🇹🇭 Thai</option>
+                                                    <option value="vi">🇻🇳 Vietnamese</option>
+                                                    <option value="ms">🇲🇾 Malay</option>
+                                                    <option value="id">🇮🇩 Indonesian</option>
+                                                    <option value="tl">🇵🇭 Filipino/Tagalog</option>
+                                                    <option value="km">🇰🇭 Khmer</option>
+                                                    <option value="my">🇲🇲 Burmese</option>
+                                                    <option value="ne">🇳🇵 Nepali</option>
+                                                    <option value="si">🇱🇰 Sinhala</option>
+                                                    <option value="fa">🇮🇷 Persian/Farsi</option>
+                                                </optgroup>
+
+                                                <!-- 🌍 Europe -->
+                                                <optgroup label="🇪🇺 Europe">
+                                                    <option value="en-GB">🇬🇧 English (UK)</option>
+                                                    <option value="de">🇩🇪 German</option>
+                                                    <option value="fr">🇫🇷 French</option>
+                                                    <option value="es">🇪🇸 Spanish</option>
+                                                    <option value="it">🇮🇹 Italian</option>
+                                                    <option value="ru">🇷🇺 Russian</option>
+                                                    <option value="nl">🇳🇱 Dutch</option>
+                                                    <option value="sv">🇸🇪 Swedish</option>
+                                                    <option value="no">🇳🇴 Norwegian</option>
+                                                    <option value="da">🇩🇰 Danish</option>
+                                                    <option value="fi">🇫🇮 Finnish</option>
+                                                    <option value="pl">🇵🇱 Polish</option>
+                                                    <option value="uk">🇺🇦 Ukrainian</option>
+                                                    <option value="cs">🇨🇿 Czech</option>
+                                                    <option value="hu">🇭🇺 Hungarian</option>
+                                                    <option value="el">🇬🇷 Greek</option>
+                                                    <option value="tr">🇹🇷 Turkish</option>
+                                                    <option value="pt">🇵🇹 Portuguese</option>
+                                                    <option value="ro">🇷🇴 Romanian</option>
+                                                    <option value="bg">🇧🇬 Bulgarian</option>
+                                                </optgroup>
+
+                                                <!-- 🌍 Africa -->
+                                                <optgroup label="🌍 Africa">
+                                                    <option value="sw">🇰🇪 Swahili</option>
+                                                    <option value="zu">🇿🇦 Zulu</option>
+
+                                                    <option value="am">🇪🇹 Amharic</option>
+                                                    <option value="so">🇸🇴 Somali</option>
+                                                    <option value="mg">🇲🇬 Malagasy</option>
+                                                    <option value="af">🇿🇦 Afrikaans</option>
+                                                </optgroup>
+
+                                                <!-- 🌍 North America -->
+                                                <optgroup label="🌎 North America">
+                                                    <option value="en-US">🇺🇸 English (US)</option>
+                                                    <option value="fr-CA">🇨🇦 French (Canadian)</option>
+                                                    <option value="es-MX">🇲🇽 Spanish (Mexican)</option>
+                                                    <option value="haw">🇺🇸 Hawaiian</option>
+                                                    <option value="nv">🇺🇸 Navajo</option>
+                                                </optgroup>
+
+                                                <!-- 🌍 South America -->
+                                                <optgroup label="🌎 South America">
+                                                    <option value="pt-BR">🇧🇷 Portuguese (Brazilian)</option>
+                                                    <option value="es-AR">🇦🇷 Spanish (Argentinian)</option>
+                                                    <option value="qu">🇵🇪 Quechua</option>
+                                                    <option value="ay">🇧🇴 Aymara</option>
+                                                    <option value="gn">🇵🇾 Guarani</option>
+                                                </optgroup>
+
+                                                <!-- 🌍 Oceania -->
+                                                <optgroup label="🌏 Oceania">
+                                                    <option value="en-AU">🇦🇺 English (Australian)</option>
+                                                    <option value="en-NZ">🇳🇿 English (New Zealand)</option>
+                                                    <option value="mi">🇳🇿 Māori</option>
+                                                    <option value="sm">🇼🇸 Samoan</option>
+                                                    <option value="to">🇹🇴 Tongan</option>
+                                                    <option value="fj">🇫🇯 Fijian</option>
+                                                </optgroup>
+                                            </select>
+                                                </div>
+                                            </div>
+
+                                            <!-- ✅ Hidden Google Translate Instance -->
+                                            <div id="custom_google_translate"></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+        document.querySelector('#id_picture').addEventListener('change', function (e) {
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                document.getElementById('output_image').src = reader.result;
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+            document.querySelector('.custom-file-label').textContent = file.name;
+        });
+
+        // Add animation to progress steps
+        const progressSteps = document.querySelectorAll('.progress-step');
+        progressSteps.forEach((step, index) => {
+            setTimeout(() => {
+                step.classList.add('active');
+                if (index > 0) {
+                    progressSteps[index - 1].classList.add('completed');
+                }
+            }, index * 500);
+        });
+
+        // Smooth scroll to sections
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form validation
+        const form = document.getElementById('registerForm');
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+
+        // Floating labels
+        const floatingInputs = document.querySelectorAll('.floating-label input, .floating-label select');
+        floatingInputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentNode.classList.add('focused');
+            });
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    input.parentNode.classList.remove('focused');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
