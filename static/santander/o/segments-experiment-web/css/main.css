@@ -1,0 +1,129 @@
+/*1651789516000*/
+
+.lfr-segments-experiment-click-goal-root {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 900
+}
+
+.lfr-segments-experiment-click-goal-target {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+    position: absolute
+}
+
+.lfr-segments-experiment-click-goal-target-delete {
+    cursor: pointer
+}
+
+.lfr-segments-experiment-click-goal-target-overlay {
+    background-color: rgba(128, 172, 255, 0.05);
+    border: 1px solid rgba(128, 172, 255, 0.4);
+    cursor: pointer;
+    pointer-events: auto
+}
+
+.lfr-segments-experiment-click-goal-target-overlay.lfr-segments-experiment-click-goal-target-overlay-selected {
+    border-color: #393a4a
+}
+
+.lfr-segments-experiment-click-goal-target-overlay.lfr-segments-experiment-click-goal-target-overlay-editing {
+    border-color: #4b9fff
+}
+
+.lfr-segments-experiment-click-goal-target-popover {
+    background-color: #FFF;
+    border-color: #e7e7ed;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: 0 1px 5px -1px rgba(0, 0, 0, 0.3);
+    cursor: initial;
+    font-size: .875rem;
+    pointer-events: auto
+}
+
+.lfr-segments-experiment-click-goal-target-topper {
+    background-color: #393a4a;
+    border-radius: 2px 2px 0 0;
+    cursor: initial;
+    pointer-events: auto;
+    position: absolute
+}
+
+.lfr-segments-experiment-click-goal-target-topper-editing {
+    background-color: #4b9fff
+}
+
+.lfr-segments-experiment-panel.open-admin-panel.sidenav-menu-slider {
+    visibility: visible;
+    width: 320px
+}
+
+.lfr-segments-experiment-panel .sidebar-body {
+    background-color: #fff;
+    border-left-color: #e7e7ed;
+    border-left-style: solid;
+    border-left-width: 1px
+}
+
+.lfr-has-segments-experiment-panel {
+    overflow: auto
+}
+
+.lfr-has-segments-experiment-panel .lfr-configurator-visibility {
+    display: none
+}
+
+.lfr-segments-experiment-panel .btn-secondary svg.lexicon-icon-ellipsis-v {
+    fill: #6b6c7e
+}
+
+.lfr-segments-experiment-panel .sidebar .sidebar-header {
+    padding-bottom: .75rem;
+    padding-top: .75rem
+}
+
+@media only screen and (min-width:768px) {
+    .lfr-segments-experiment-panel .sidebar-header {
+        padding-bottom: 12px;
+        padding-left: 24px;
+        padding-top: 12px
+    }
+}
+
+.lfr-segments-experiment-panel .sidebar-header {
+    background-color: #272833;
+    color: #d5d6e1;
+    display: flex;
+    justify-content: space-between;
+    line-height: 32px;
+    padding-bottom: 8px;
+    padding-right: 9px;
+    padding-top: 8px
+}
+
+.lfr-segments-experiment-panel .sidebar-body {
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 56px
+}
+
+@media only screen and (min-width:768px) {
+    .lfr-segments-experiment-panel .sidebar-header {
+        padding-bottom: 12px;
+        padding-left: 24px;
+        padding-top: 12px
+    }
+}
+
+.lfr-segments-experiment-panel dt {
+    font-weight: 500
+}

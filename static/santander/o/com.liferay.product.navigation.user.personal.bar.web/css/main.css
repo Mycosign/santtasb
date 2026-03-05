@@ -1,0 +1,18 @@
+/*1651790022000*/
+
+.portlet-user-personal-bar .personal-menu-dropdown .btn .sticker .inline-item {
+    font-size: 1.25rem
+}
+
+.portlet-user-personal-bar .personal-menu-dropdown .sticker-bottom-right.sticker-outside {
+    bottom: -0.5rem;
+    right: -0.5rem
+}
+
+.portlet-user-personal-bar .personal-menu-dropdown .sticker-lg .lexicon-icon {
+    margin-top: -0.25rem
+}
+
+.portlet-user-personal-bar .personal-menu-dropdown .sticker-sm .lexicon-icon {
+    margin-top: -0.125rem
+}

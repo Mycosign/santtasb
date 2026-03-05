@@ -1,0 +1,53 @@
+/*1651789640000*/
+
+.portlet-search-bar .alert {
+    margin-bottom: 0
+}
+
+.portlet-search-bar .search-bar .form-group.input-group-item {
+    margin-bottom: 0
+}
+
+.portlet-search-bar .search-bar-keywords-input-wrapper {
+    min-width: 6.25rem
+}
+
+.portlet-search-bar .search-bar-search-select-wrapper {
+    max-width: 9.375rem
+}
+
+.search-facet .facet-clear-btn {
+    font-weight: 600;
+    font-size: .875rem
+}
+
+.search-facet .custom-control-label.facet-term-unselected,
+.search-facet .term-name.facet-term-unselected {
+    font-weight: 400
+}
+
+.search-facet .custom-control-label.facet-term-selected,
+.search-facet .term-name.facet-term-selected {
+    font-weight: 600
+}
+
+.portlet-suggestions .changed-keyword {
+    font-weight: bold
+}
+
+.portlet-search .scope-selector {
+    margin-left: 12px;
+    max-width: 144px
+}
+
+.portlet-search .search-button-field-wrapper {
+    margin-bottom: 1.5rem
+}
+
+.portlet-search .search-input-group {
+    margin-bottom: 0
+}
+
+.portlet-search .search-input-group .form-group-item {
+    margin-right: 0
+}
