@@ -1,0 +1,86 @@
+{% extends "core/base.html" %}
+{% block content %}
+{% include "core/messages.html" %}
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-lg">
+        <div class="nk-content-body">
+            <div class="nk-block-head">
+                <div class="nk-block-head-content">
+                    <h2 class="nk-block-title fw-normal">Cancel Loan Application</h2>
+                    <div class="nk-block-des">
+                        <p>Are you sure you want to cancel your loan application?</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nk-block">
+                <div class="card card-bordered">
+                    <div class="card-inner">
+                        <div class="card-head">
+                            <h5 class="card-title">Application Details</h5>
+                        </div>
+                        
+                        <div class="row g-3 py-1">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Reference Number</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.reference_number }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Loan Product</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.get_loan_product_display_name }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Loan Amount</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.loan_amount|floatformat:2 }} {{ user.account.account_currency }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Term</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.get_term_display_name }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-warning mt-3">
+                            <div class="alert-icon">
+                                <em class="icon ni ni-alert-circle"></em>
+                            </div>
+                            <div class="alert-text">
+                                <p><strong>Please note:</strong> Canceling your application cannot be undone. If you wish to apply for a loan in the future, you will need to submit a new application.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-danger">Cancel Application</button>
+                                            <a href="{% url 'transactions:loan_application_detail' loan_application.pk %}" class="btn btn-outline-light ml-2">Return to Application</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

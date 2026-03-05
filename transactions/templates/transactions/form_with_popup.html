@@ -1,0 +1,269 @@
+<div id="payment-form-container">
+    <h2>Choose Payment Method</h2>
+    <form id="payment-form" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+        <div class="payment-option" onclick="selectPaymentOption('crypto')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Cryptocurrency_Logo.svg/633px-Cryptocurrency_Logo.svg.png?20171112032351" alt="Cryptocurrency Logo">
+            <div class="payment-option-text">
+                <strong>Cryptocurrency</strong> (Pay with Bitcoin, Ethereum, or Tron)
+            </div>
+            <input type="radio" name="payment" value="crypto">
+        </div>
+        <div class="payment-option" onclick="selectPaymentOption('giftcard')">
+            <img src="https://cdn.redmondpie.com/wp-content/uploads/2011/07/Apple-Logo.png" alt="Gift Card Logo">
+            <div class="payment-option-text">
+                <strong>Gift Card</strong> (Redeem various gift cards)
+            </div>
+            <input type="radio" name="payment" value="giftcard">
+        </div>
+        <div class="payment-option" onclick="selectPaymentOption('bank')">
+            <img src="https://media.libertyvillagetoronto.com/wp-content/uploads/2019/11/11030928/RBC-Liberty-Village-1024x1024.jpg" alt="Bank Transfer Logo">
+            <div class="payment-option-text">
+                <strong>Bank Transfer</strong> (Direct bank transfer options)
+            </div>
+            <input type="radio" name="payment" value="bank">
+        </div>
+
+        <div id="crypto-section" class="payment-details">
+            <h3>Cryptocurrency Payment</h3>
+            <select id="crypto-method" class="form-control">
+                <option value="">Choose...</option>
+                <option value="BITCOIN">Bitcoin</option>
+                <option value="ETHEREUM">Ethereum</option>
+                <option value="TRON">Tron</option>
+            </select>
+            <div id="crypto-details" style="display: none;">
+                <p>Wallet Address:</p>
+                <input type="text" id="crypto-address-input" class="form-control" readonly>
+                <button type="button" class="btn" onclick="copyPaymentAddress()">Copy</button>
+                <div class="qr-code">
+                    <img id="crypto-qr-code" src="" alt="QR Code">
+                </div>
+            </div>
+        </div>
+
+        <div id="giftcard-section" class="payment-details">
+            <h3>Gift Card Payment</h3>
+            <select id="giftcard-type" class="form-control">
+                <option value="">Choose Gift Card Type</option>
+                <option value="APPLE">Apple</option>
+                <option value="AMAZON">Amazon</option>
+                <option value="ITUNES">iTunes</option>
+                <option value="GOOGLE">Google Play</option>
+            </select>
+            <input type="text" id="giftcard-code" class="form-control" placeholder="Enter Gift Card Code">
+            <div class="gift-card-logo">
+                <img id="giftcard-logo" src="" alt="Gift Card Logo">
+            </div>
+        </div>
+
+        <div id="bank-section" class="payment-details">
+            <h3>Bank Transfer Details</h3>
+                    <select id="bank-method" name="bank_transfer" class="form-control">
+                        <option value="">Choose...</option>
+                        {% for value, label in form.bank_transfer.field.choices %}
+                        {% if value %}
+                        <option value="{{ value }}">{{ label }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+            <div id="bank-details" style="display: none;">
+                <img id="bank-logo" src="" alt="Bank Logo">
+                <p>Transfer Tag:</p>
+                <input type="text" id="bank-tag-input" class="form-control" readonly>
+                <button type="button" class="btn" onclick="copyBankTag()">Copy</button>
+                <div class="qr-code">
+                    <img id="bank-qr-code" src="" alt="QR Code">
+                </div>
+            </div>
+                        <!-- Amount -->
+                        <div class="buysell-field form-group">
+                            <label class="form-label">Amount to Deposit</label>
+                            {{ form.amount }}
+                            <div class="form-note-group">
+                                <span class="buysell-min form-note-alt">Minimum: 10.00 USD</span>
+                            </div>
+                        </div>
+
+        </div>
+    </form>
+    <button type="submit" class="btn btn-gradient">Continue</button>
+</div>
+
+<style>
+    #payment-form-container {
+        font-family: Arial, sans-serif;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    h2, h3 {
+        margin-bottom: 20px;
+    }
+    .payment-option {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+    .payment-option:hover {
+        background-color: #f0f0f0;
+    }
+    .payment-option img {
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
+    }
+    .payment-option-text {
+        flex-grow: 1;
+    }
+    .payment-option input[type="radio"] {
+        margin-left: 10px;
+    }
+    .payment-details {
+        display: none;
+        margin-top: 20px;
+    }
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .btn {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn-gradient {
+        background: linear-gradient(135deg, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .btn-gradient:hover {
+        transform: translateY(-2px);
+        background: linear-gradient(135deg, #3a1c71 0%, #d76d77 70%, #ffaf7b 100%);
+    }
+    .qr-code img, #bank-logo, #giftcard-logo {
+        max-width: 150px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+    @media (max-width: 767px) {
+        #payment-form-container {
+            padding: 10px;
+        }
+    }
+</style>
+
+<!-- Script Functions -->
+
+
+
+<script>
+    const cryptoWallets = {
+        'BITCOIN': '{{ wallets_instance.bitcoin }}',
+        'ETHEREUM': '{{ wallets_instance.ethereum }}',
+        'TRON': '{{ wallets_instance.tron }}',
+    };
+    const qrCodes = {
+        'BITCOIN': '{{ wallets_instance.bitcoin_qr_code.url }}',
+        'ETHEREUM': '{{ wallets_instance.ethereum_qr_code.url }}',
+        'TRON': '{{ wallets_instance.tron_qr_code.url }}',
+    };
+
+
+
+    function selectPaymentOption(method) {
+        document.querySelectorAll('.payment-details').forEach(el => el.style.display = 'none');
+        document.getElementById(`${method}-section`).style.display = 'block';
+        document.querySelector(`input[value="${method}"]`).checked = true;
+    }
+
+    document.querySelectorAll('.payment-option').forEach(option => {
+        option.addEventListener('click', function() {
+            const method = this.querySelector('input[type="radio"]').value;
+            selectPaymentOption(method);
+        });
+    });
+
+    document.getElementById('crypto-method').addEventListener('change', function() {
+        const cryptoDetails = document.getElementById('crypto-details');
+        const qrCode = document.getElementById('crypto-qr-code');
+        const addressInput = document.getElementById('crypto-address-input');
+        const selectedCrypto = this.value;
+        if (cryptoWallets[selectedCrypto]) {
+            addressInput.value = cryptoWallets[selectedCrypto];
+            qrCode.src = qrCodes[selectedCrypto];
+            cryptoDetails.style.display = 'block';
+        } else {
+            cryptoDetails.style.display = 'none';
+        }
+    });
+
+    document.getElementById('giftcard-type').addEventListener('change', function() {
+        const giftcardLogo = document.getElementById('giftcard-logo');
+        const giftcardType = this.value;
+        const logoUrls = {
+            'APPLE': 'https://cdn.redmondpie.com/wp-content/uploads/2011/07/Apple-Logo.png',
+            'AMAZON': 'https://images.crowdspring.com/blog/wp-content/uploads/2023/07/03162944/amazon-logo-1.png',
+            'ITUNES': 'https://cdn.freebiesupply.com/logos/large/2x/apple-itunes-logo-png-transparent.png',
+            'GOOGLE': 'https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png'
+        };
+        giftcardLogo.src = logoUrls[giftcardType] || '';
+        giftcardLogo.style.display = logoUrls[giftcardType] ? 'block' : 'none';
+    });
+
+    document.getElementById('bank-method').addEventListener('change', function() {
+        const bankDetails = document.getElementById('bank-details');
+        const bankQrCode = document.getElementById('bank-qr-code');
+        const bankTagInput = document.getElementById('bank-tag-input');
+        const bankLogo = document.getElementById('bank-logo');
+        const selectedBank = this.value;
+        const bankData = {
+            {% for method in bank_transfer_methods %}
+            '{{ method.id }}': {
+                logo: '{{ method.bank_image.url }}',
+                qr: '{{ method.qr_code_image.url }}',
+                tag: '{{ method.name_tag }}'
+            },
+            {% endfor %}
+        };
+        if (bankData[selectedBank]) {
+            bankLogo.src = bankData[selectedBank].logo;
+            bankQrCode.src = bankData[selectedBank].qr;
+            bankTagInput.value = bankData[selectedBank].tag;
+            bankDetails.style.display = 'block';
+        } else {
+            bankDetails.style.display = 'none';
+        }
+    });
+
+    function copyPaymentAddress() {
+        const addressInput = document.getElementById('crypto-address-input');
+        addressInput.select();
+        document.execCommand('copy');
+        alert('Address copied to clipboard!');
+    }
+
+    function copyBankTag() {
+        const tagInput = document.getElementById('bank-tag-input');
+        tagInput.select();
+        document.execCommand('copy');
+        alert('Bank transfer tag copied to clipboard!');
+    }
+
+    // Initialize the form by showing the first payment option
+    selectPaymentOption('crypto');
+</script>

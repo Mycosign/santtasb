@@ -1,0 +1,144 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% include "core/messages.html" %}
+
+<style>
+    
+</style>
+
+                <div class="nk-content">
+                    <div class="container-xl wide-lg">
+                        <div class="nk-content-body">
+                            <div class="nk-block-head">
+                                <div class="nk-block-head-sub">
+                                </div>
+                                <div class="nk-block-between-md g-4 card-bordered">
+                                    <div class="nk-block-head-content">
+                                        <h4 class="nk-block-title fw-normal">Manage Digital Assets.</h4>
+                                        <div class="nk-block-des">
+                                            <p>
+                                               FLORIDA CAPITAL BANK Crypto assets management tool enables users to tie in multiple crypto accounts and wallets so that they can easily keep an eye on all of their cryptocurrency holdings using a single dashboard.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="nk-block-head-content">
+                                        <ul class="nk-block-tools gx-3">
+                                            <li><a href="javascript:void" class="btn btn-light text-primary"><span><em class="icon ni ni-bitcoin"></em> Crypto Currencies</span></a></li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-lg">
+        <div class="nk-content-body">
+            <div class="buysell wide-xs m-auto">
+                <div class="buysell-title text-center">
+                    <h2 class="title">Which Crypto Asset would you like to Withdraw?</h2>
+                </div>
+                <div class="buysell-block">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- Select your preferred asset -->
+                        <div class="buysell-field form-group">
+                            <div class="form-label-group">
+                                <label class="form-label">Choose your preferred asset</label>
+                            </div>
+                            <div class="form-control-group">
+                                <select name="{{ form.payment_method.name }}" id="{{ form.payment_method.id_for_label }}" class="form-control form-control-lg">
+                                    {% for value, label in form.payment_method.field.choices %}
+                                        <option value="{{ value }}">{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% if form.payment_method.errors %}
+                                <div class="form-error-message form-error-show">
+                                    <strong>{{ form.errors.payment_method }}</strong>
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Display user's balance -->
+                        <div id="balance-display" class="form-group">
+                            <label for="balance-input">Your Available Balance</label>
+                            <div class="input-group">
+                                <input type="text" id="balance-input" class="form-control" value="" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Amount to Withdraw -->
+                        <div class="buysell-field form-group">
+                            <div class="form-label-group">
+                                <label class="form-label" for="buysell-amount">Amount to Withdraw</label>
+                            </div>
+                            <div class="form-control-group">
+                                <input type="number" name="{{ form.amount.name }}" id="{{ form.amount.id_for_label }}" class="form-control form-control-lg" step="0.01">
+                            </div>
+                            {% if form.amount.errors %}
+                                <div class="form-error-message form-error-show">
+                                    <strong>{{ form.errors.amount }}</strong>
+                                </div>
+                            {% endif %}
+                            <div class="form-note-group">
+                                <span class="buysell-min form-note-alt">Minimum: 10.00 USD</span>
+                            </div>
+                        </div>
+
+                        <!-- Recipient Address -->
+                        <div class="buysell-field form-group">
+                            <div class="form-label-group">
+                                <label class="form-label" for="recipient-address">Recipient Address</label>
+                            </div>
+                            <div class="form-control-group">
+                                <input type="text" name="{{ form.recipient_address.name }}" id="{{ form.recipient_address.id_for_label }}" class="form-control form-control-lg">
+                            </div>
+                            {% if form.recipient_address.errors %}
+                                <div class="form-error-message form-error-show">
+                                    <strong>{{ form.errors.recipient_address }}</strong>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="buysell-field form-action">
+                            <button type="submit" class="btn btn-lg btn-block btn-primary">Continue</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  var paymentMethodSelect = document.getElementById("{{ form.payment_method.id_for_label }}");
+  var balanceDisplay = document.getElementById("balance-input");
+
+  // User's balances from Django (passed via the template context)
+  var balances = {
+    "BITCOIN": "{{ request.user.account.bitcoins }}",
+    "ETHEREUM": "{{ request.user.account.ethereums }}",
+    "USDT_ERC20": "{{ request.user.account.usdt_erc20s }}",
+    "TRON": "{{ request.user.account.trons }}",
+    "RIPPLE": "{{ request.user.account.ripples }}",
+    "STELLAR": "{{ request.user.account.stellars }}",
+    "LITECOIN": "{{ request.user.account.litecoins }}"
+  };
+
+  // Update balance display when payment method changes
+  paymentMethodSelect.addEventListener("change", function() {
+    var selectedMethod = paymentMethodSelect.value;
+    balanceDisplay.value = balances[selectedMethod] || "0.00";
+  });
+</script>
+
+                    <!-- footer @e -->
+                </div>
+
+
+
+
+{% endblock %}

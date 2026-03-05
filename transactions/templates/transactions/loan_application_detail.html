@@ -1,0 +1,210 @@
+{% extends "core/base.html" %}
+{% block content %}
+{% include "core/messages.html" %}
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-lg">
+        <div class="nk-content-body">
+            <div class="nk-block-head">
+                <div class="nk-block-between-md g-4">
+                    <div class="nk-block-head-content">
+                        <h2 class="nk-block-title fw-normal">Loan Application Details</h2>
+                        <div class="nk-block-des">
+                            <p>Ref: {{ loan_application.reference_number }}</p>
+                        </div>
+                    </div>
+                    <div class="nk-block-head-content">
+                        <a href="{% url 'transactions:loan_application_list' %}" class="btn btn-outline-light">
+                            <em class="icon ni ni-arrow-left"></em> <span>Back to All Applications</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Status Card -->
+            <div class="nk-block">
+                <div class="card card-bordered">
+                    <div class="card-inner">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h4 class="card-title">{{ loan_application.get_loan_product_display_name }}</h4>
+                                <div class="d-flex align-items-center mt-2">
+                                    <span class="badge bg-{% if loan_application.status == 'APPROVED' %}success{% elif loan_application.status == 'DECLINED' %}danger{% elif loan_application.status == 'FUNDED' %}info{% else %}warning{% endif %} me-2">
+                                        {{ loan_application.get_status_display }}
+                                    </span>
+                                    <span class="text-muted">Updated: {{ loan_application.updated_at|date:"M d, Y h:i A" }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                                <h3 class="text-primary">{{ loan_application.loan_amount|floatformat:2 }} {{ user.account.account_currency }}</h3>
+                                <p class="mb-0">{{ loan_application.get_term_display_name }} | {{ loan_application.get_rate_type_display }}</p>
+                                
+                                {% if loan_application.status == 'PENDING' or loan_application.status == 'IN_PROGRESS' %}
+                                <div class="mt-2">
+                                    <a href="{% url 'transactions:loan_application_cancel' loan_application.pk %}" class="btn btn-sm btn-danger">Cancel Application</a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Application Details -->
+            <div class="nk-block nk-block-lg">
+                <div class="card card-bordered">
+                    <div class="card-inner">
+                        <h5 class="card-title">Application Details</h5>
+                        <div class="row g-3 mt-1">
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Loan Product</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.get_loan_product_display_name }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Loan Amount</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.loan_amount|floatformat:2 }} {{ user.account.account_currency }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Term</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.get_term_display_name }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Rate Type</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.get_rate_type_display }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Submitted On</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.created_at|date:"M d, Y h:i A" }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Status</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.get_status_display }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {% if loan_application.interest_rate %}
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Interest Rate</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.interest_rate }}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if loan_application.monthly_payment %}
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Monthly Payment</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.monthly_payment|floatformat:2 }} {{ user.account.account_currency }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Purpose</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.purpose }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {% if loan_application.collateral_description %}
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Collateral Description</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.collateral_description }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if loan_application.decision_notes %}
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label text-muted">Decision Notes</label>
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-text">{{ loan_application.decision_notes }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+            <!-- Payment Schedule (Only for funded loans) -->
+            {% if loan_application.status == 'FUNDED' and payments %}
+            <div class="nk-block nk-block-lg">
+                <div class="card card-bordered">
+                    <div class="card-inner">
+                        <div class="card-head">
+                            <h5 class="card-title">Payment Schedule</h5>
+                        </div>
+                        
+                        <div class="table-responsive mt-3">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Payment Date</th>
+                                        <th>Amount Due</th>
+                                        <th>Principal</th>
+                                        <th>Interest</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for payment in payments %}
+                                    <tr>
+                                        <td>{{ payment.payment_date|date:"M d, Y" }}</td>
+                                        <td>{{ payment.amount_due|floatformat:2 }} {{ user.account.account_currency }}</td>
+                                        <td>{{ payment.principal_amount|floatformat:2 }} {{ user.account.account_currency }}</td>
+                                        <td>{{ payment.interest_amount|floatformat:2 }} {{ user.account.account_currency }}</td>
+                                        <td>
+                                            <span class="badge bg-{% if payment.status == 'COMPLETED' %}success{% elif payment.status == 'LATE' or payment.status == 'MISSED' %}danger{% elif payment.status == 'PROCESSING' %}info{% else %}warning{% endif %}">
+                                                {{ payment.get_status_display }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

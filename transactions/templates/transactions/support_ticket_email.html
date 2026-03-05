@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f5f9;
+        }
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-image: linear-gradient(to right, #5B4BDA, #6C63FF);
+            padding: 32px 40px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .header p {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .content {
+            padding: 36px 40px;
+            background-color: #ffffff;
+        }
+        .content h2 {
+            font-size: 22px;
+            color: #5B4BDA;
+            margin-top: 0;
+            font-weight: 700;
+        }
+        .content p {
+            margin: 16px 0;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        .info-table {
+            width: 100%;
+            margin-top: 24px;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .info-table th, .info-table td {
+            padding: 14px 18px;
+            text-align: left;
+        }
+        .info-table th {
+            background-color: #f1f3fa;
+            font-weight: 600;
+            color: #555;
+        }
+        .info-table td {
+            background-color: #ffffff;
+            border-top: 1px solid #f0f2f7;
+        }
+        .info-table tr:last-child td {
+            border-bottom: 0;
+        }
+        .footer {
+            background-color: #f9fafc;
+            padding: 24px 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+        .footer p {
+            margin: 6px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Support Ticket Alert</h1>
+            <p>Quick response is requested</p>
+        </div>
+        <div class="content">
+            <h2>Ticket Information</h2>
+            <p><strong>Dear Admin,</strong></p>
+            <p>A new support ticket has been submitted by a user. Here are the details:</p>
+            
+            <table class="info-table">
+                <tr>
+                    <th>User Full Name:</th>
+                    <td>{{ user_fullname }}</td>
+                </tr>
+                <tr>
+                    <th>User Email:</th>
+                    <td>{{ user_email }}</td>
+                </tr>
+                <tr>
+                    <th>Department:</th>
+                    <td>{{ ticket_department }}</td>
+                </tr>
+                <tr>
+                    <th>Message:</th>
+                    <td>{{ ticket_message }}</td>
+                </tr>
+                <tr>
+                    <th>Submission Time:</th>
+                    <td>{{ ticket_timestamp }}</td>
+                </tr>
+            </table>
+
+            <p>Please log in to the admin panel to review and respond to this ticket promptly.</p>
+        </div>
+        <div class="footer">
+            <p>Thank you for your attention,</p>
+            <p><strong>Your Support Team</strong></p>
+        </div>
+    </div>
+</body>
+</html>

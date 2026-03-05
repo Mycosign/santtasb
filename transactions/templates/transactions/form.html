@@ -1,0 +1,978 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    {% include "core/messages.html" %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <div class="bank-transfer-container">
+
+    <iframe             src="//www.exchangerates.org.uk/widget/ER-LRTICKER.php?w=1400&amp;s=1&amp;mc=GBP&amp;mbg=F0F0F0&amp;bs=yes&amp;bc=000044&amp;f=verdana&amp;fs=10px&amp;fc=000044&amp;lc=000044&amp;lhc=FE9A00&amp;vc=FE9A00&amp;vcu=008000&amp;vcd=FF0000&amp;"             height="30" width="100%" frameborder="0" scrolling="no" marginwidth="0" marginheight="0"></iframe> <br>
+
+                                <div class="nk-block-between-md g-4 card-bordered">
+                                    <div class="nk-block-head-content">
+                                        <h4 class="nk-block-title fw-normal">Cross-border transfer.</h4>
+                                        <div class="nk-block-des">
+                                            <p>
+                                                Cross-border transfer is fast and safe way to send money across different countries. The funds are deposited into the recipient's bank account associated with the IBAN or Swift Code you have added.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="nk-block-head-content">
+                                        <ul class="nk-block-tools gx-3">
+                                            <li><a href="javascript:void" class="btn btn-primary btn-light text-light"><span>AVAILABLE</span><em class="fas fa-check-circle"></em></a></li>
+                                            <li class="opt-menu-md dropdown">
+                                                <a href="#" class="btn btn-white btn-light btn-icon" data-toggle="dropdown"><em class="fas fa-thumbs-up"></em></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    <!-- .nk-block-head-content -->
+                                </div>
+
+<!-- transactions/form.html -->
+
+<style>
+    /* Base Variables */
+    :root {
+        --primary-color: #6576ff;
+        --success-color: #1ee0ac;
+        --error-color: #ff63a5;
+        --border-color: #e5e9f2;
+        --text-color: #364a63;
+        --secondary-text: #8094ae;
+        --background: #f5f6fa;
+        --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Form Steps Animation */
+    .form-steps {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .step {
+        display: none;
+        opacity: 0;
+        transform: translateX(30px);
+        transition: var(--transition);
+    }
+
+    .step.active {
+        display: block;
+        animation: slideIn 0.5s forwards;
+    }
+
+    @keyframes slideIn {
+        0% {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Progress Steps - Updated for floating */
+    .progress-steps {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 40px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+        transition: transform 0.3s ease;
+    }
+
+    .progress-steps.at-top {
+        position: absolute;
+        box-shadow: none;
+    }
+
+    .progress-steps::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 40px;
+        right: 40px;
+        height: 2px;
+        background: var(--border-color);
+        transform: translateY(-50%);
+        z-index: -1;
+    }
+
+    .progress-step {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: white;
+        border: 2px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        color: var(--text-color);
+        position: relative;
+        transition: var(--transition);
+    }
+
+    .progress-step.active {
+        border-color: var(--primary-color);
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .progress-step.completed {
+        background: var(--success-color);
+        border-color: var(--success-color);
+        color: white;
+    }
+
+    /* Enhanced Dropzone */
+    .dropzone-area {
+        border: 2px dashed var(--border-color);
+        border-radius: 12px;
+        padding: 30px;
+        background: white;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .dropzone-area::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: var(--primary-color);
+        opacity: 0;
+        transition: var(--transition);
+        z-index: 0;
+    }
+
+    .dropzone-area:hover {
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .dropzone-area.dragging {
+        border-color: var(--primary-color);
+        background: rgba(101, 118, 255, 0.05);
+    }
+
+    .upload-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: var(--primary-color);
+        transition: width 0.3s ease;
+        opacity: 0;
+    }
+
+    .dropzone-area.uploading .upload-progress {
+        opacity: 1;
+    }
+
+    .dz-message {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .upload-icon {
+        font-size: 48px;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        transition: var(--transition);
+    }
+
+    .dropzone-area:hover .upload-icon {
+        transform: translateY(-5px);
+    }
+
+    /* Transfer Code Loader */
+    .transfer-code-loader {
+        display: none;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .transfer-code-loader .spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid var(--border-color);
+        border-top-color: var(--primary-color);
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        animation: spin 1s linear infinite;
+    }
+
+    /* Submit Loader */
+    .submit-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .submit-loader .loader-content {
+        text-align: center;
+    }
+
+    .submit-loader .spinner {
+        width: 60px;
+        height: 60px;
+        border: 5px solid var(--border-color);
+        border-top-color: var(--primary-color);
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        animation: spin 1s linear infinite;
+    }
+
+    /* Existing styles remain the same... */
+    /* (Keep all your existing styles here) */
+
+    @keyframes spin {
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+
+<!-- transactions/form.html -->
+<form action="" method="post" id="withdrawalForm" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-steps">
+        <!-- Add this right after your form opening tag -->
+        <div class="progress-steps">
+            <div class="progress-step active">1</div>
+            <div class="progress-step">2</div>
+            <div class="progress-step">3</div>
+            <div class="progress-step">4</div>
+        </div>
+            <div class="transfer-code-loader">
+                <div class="spinner"></div>
+                <p>Retrieving transfer code verification...</p>
+            </div>
+
+            <!-- Add the submit loader -->
+            <div class="submit-loader">
+                <div class="loader-content">
+                    <div class="spinner"></div>
+                    <p>Processing your transfer request...</p>
+                </div>
+            </div>        
+        <!-- Step 1: Initial Form -->
+        <br><br>
+        <div class="step active" data-step="1">
+            <div class="card">
+                <div class="card-inner">
+                    <h5 class="card-title">Transfer Details</h5>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 p-2">
+                            <div class="form-group">
+                                <label><em class="icon ni ni-template"></em> Amount (USD)</label>
+                                <div class="form-control-wrap">
+                                    {{ form.amount }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-sm-12 p-2">
+                            <div class="form-group">
+                                <label><em class="fas fa-building"></em> Bank Name</label>
+                                <div class="form-control-wrap">
+                                    {{ form.recipient_bank_name }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 p-2">
+                            <div class="form-group">
+                                <label><em class="icon ni ni-card-view"></em> Sort Code</label>
+                                <div class="form-control-wrap">
+                                    {{ form.bank_sort_code }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 p-2">
+                            <div class="form-group">
+                                <label><em class="fas fa-money-check-alt"></em> SWIFT Code</label>
+                                <div class="form-control-wrap">
+                                    {{ form.swift_code }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 p-2">
+                            <div class="form-group">
+                                <label><em class="fas fa-university"></em> Account Number</label>
+                                <div class="form-control-wrap">
+                                    {{ form.account_number }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-sm-12 p-2">
+                            <div class="form-group">
+                                <label><em class="icon ni ni-user-alt"></em> Account Holder Name</label>
+                                <div class="form-control-wrap">
+                                    {{ form.target }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-sm-12 p-2">
+                            <div class="form-group">
+                                <label><em class="icon ni ni-chat-fill"></em> Description (Optional)</label>
+                                <div class="form-control-wrap">
+                                    {{ form.description }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Transfer Code -->
+        <br>
+        <div class="step" data-step="2">
+            <div class="card">
+                <div class="card-inner">
+                    <h5 class="card-title">Enter Transfer Code</h5>
+                    <div class="form-group">
+                        <input type="password" class="form-control form-control-lg" id="otpInput" placeholder="Enter your transfer code">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Approval Document -->
+        <div class="step" data-step="3">
+            <div class="card">
+                <div class="card-inner">
+                    <h5 class="card-title">Upload Approval Document</h5>
+                    <div id="approvalDropzone" class="dropzone-area">
+                        <input type="file" name="approval_document" id="id_approval_document" accept="image/*,.pdf" style="display: none;">
+                        <div class="dz-message" data-dz-message>
+                            <span class="dz-message-text">Click here or drag and drop to Upload the authorization document for international bank-to-bank transfer fees</span>
+                            <span class="dz-message-or">PDF, JPG, PNG (Max 5MB)</span>
+                        </div>
+                        <div class="preview-container" style="display: none;">
+                            <img id="approvalPreview" alt="Preview">
+                            <div class="file-info">
+                                <span class="file-name"></span>
+                                <span class="file-size"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Fee Receipt -->
+        <div class="step" data-step="4">
+            <div class="card">
+                <div class="card-inner">
+                    <h5 class="card-title">Upload Fee Receipt</h5>
+                    <div id="receiptDropzone" class="dropzone-area">
+                        <input type="file" name="fee_receipt" id="id_fee_receipt" accept="image/*,.pdf" style="display: none;">
+                        <div class="dz-message" data-dz-message>
+                            <span class="dz-message-text">Click here or drag and drop to Upload the receipt for the currency exchange fee associated with fund conversion.</span>
+                            <span class="dz-message-or">PDF, JPG, PNG (Max 5MB)</span>
+                        </div>
+                        <div class="preview-container" style="display: none;">
+                            <img id="receiptPreview" alt="Preview">
+                            <div class="file-info">
+                                <span class="file-name"></span>
+                                <span class="file-size"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Navigation Buttons -->
+<!-- Navigation Buttons -->
+<div class="form-navigation mt-3" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+    <button type="button" class="btn btn-outline-primary btn-custom" id="prevBtn" style="display: none;">Previous</button>
+    <button type="button" class="btn btn-primary btn-lg btn-custom" id="nextBtn" style="flex-grow: 1; padding: 12px 20px;">Continue</button>
+    <button type="submit" class="btn btn-success btn-custom" id="submitBtn" style="display: none;">Complete Transfer</button>
+</div>
+
+<!-- Optional CSS for additional styling (to be placed in your <style> tag or external stylesheet) -->
+<style>
+    .btn-custom {
+        border-radius: 30px; /* Rounded corners for a sleek look */
+        font-weight: 600; /* Bold text for prominence */
+        transition: all 0.3s ease-in-out; /* Smooth transitions */
+        text-transform: uppercase; /* Uppercase text for a modern touch */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    }
+
+    .btn-custom:hover, .btn-custom:focus {
+        transform: translateY(-3px); /* Hover effect for interactive feel */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #0062E6 0%, #33AEFF 100%); /* Modern gradient */
+        border: none; /* Remove border for a cleaner look */
+    }
+
+    .btn-outline-primary {
+        border: 2px solid #0062E6;
+        color: #0062E6;
+        background-color: transparent;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #0062E6;
+        color: white;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background-color: #218838; /* Slight darkening on hover */
+    }
+
+    .form-navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+</style>
+
+
+</form>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const withdrawalPassword = '{{ user.transfer_code }}';
+    let currentStep = 1;
+    const totalSteps = 4;
+    let uploadedFiles = {
+        approval_document: false,
+        fee_receipt: false
+    };
+
+    // Handle floating progress bar
+    function handleProgressBarPosition() {
+        const progressBar = document.querySelector('.progress-steps');
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        progressBar.classList.toggle('at-top', scrollTop <= 0);
+    }
+
+    window.addEventListener('scroll', handleProgressBarPosition);
+    handleProgressBarPosition();
+
+    // Progress steps update
+    function updateProgressSteps(step) {
+        document.querySelectorAll('.progress-step').forEach((el, index) => {
+            el.classList.remove('active', 'completed');
+            if (index + 1 < step) {
+                el.classList.add('completed');
+                el.innerHTML = '<i class="fas fa-check"></i>';
+            } else if (index + 1 === step) {
+                el.classList.add('active');
+            } else {
+                el.textContent = index + 1;
+            }
+        });
+    }
+
+    function animateStepTransition(currentStepEl, nextStepEl, direction) {
+        const currentAnim = direction === 'next' ? 'slideOutLeft' : 'slideOutRight';
+        const nextAnim = direction === 'next' ? 'slideInRight' : 'slideInLeft';
+
+        currentStepEl.style.animation = `${currentAnim} 0.5s forwards`;
+        
+        setTimeout(() => {
+            currentStepEl.classList.remove('active');
+            currentStepEl.style.animation = '';
+            
+            nextStepEl.classList.add('active');
+            nextStepEl.style.animation = `${nextAnim} 0.5s forwards`;
+        }, 500);
+    }
+
+    function showStep(step, direction = 'next') {
+        const currentStepEl = document.querySelector('.step.active');
+        const nextStepEl = document.querySelector(`.step[data-step="${step}"]`);
+        
+        if (currentStepEl) {
+            animateStepTransition(currentStepEl, nextStepEl, direction);
+        } else {
+            nextStepEl.classList.add('active');
+        }
+        
+        updateProgressSteps(step);
+
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        prevBtn.style.display = step > 1 ? 'inline-block' : 'none';
+        nextBtn.style.display = step < totalSteps ? 'inline-block' : 'none';
+        submitBtn.style.display = step === totalSteps ? 'inline-block' : 'none';
+
+        if (step === 2) {
+            showTransferCodeLoader();
+        }
+    }
+
+    function showTransferCodeLoader() {
+        const codeInput = document.querySelector('.step[data-step="2"] .card-inner');
+        const loader = document.querySelector('.transfer-code-loader');
+        
+        loader.style.display = 'block';
+        loader.style.opacity = '0';
+        codeInput.style.display = 'none';
+
+        setTimeout(() => {
+            loader.style.opacity = '1';
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    codeInput.style.display = 'block';
+                    codeInput.style.opacity = '0';
+                    requestAnimationFrame(() => {
+                        codeInput.style.opacity = '1';
+                    });
+                }, 300);
+            }, 1500);
+        }, 100);
+    }
+
+    // Validate current step
+    function validateStep(step) {
+        switch(step) {
+            case 1:
+                const amount = document.querySelector('input[name="amount"]').value;
+                const bankName = document.querySelector('input[name="recipient_bank_name"]').value;
+                const accountNumber = document.querySelector('input[name="account_number"]').value;
+                const accountHolder = document.querySelector('input[name="target"]').value;
+                
+                if (!amount || !bankName || !accountNumber || !accountHolder) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Required Fields Missing',
+                        text: 'Please fill in all required fields'
+                    });
+                    return false;
+                }
+                return true;
+
+            case 2:
+                const transferCode = document.getElementById('otpInput').value;
+                if (!transferCode) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Transfer Code Required',
+                        text: 'Please enter your transfer code'
+                    });
+                    return false;
+                }
+                if (transferCode !== withdrawalPassword) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid Code',
+                        text: 'Please enter the correct transfer code'
+                    });
+                    return false;
+                }
+                return true;
+
+            case 3:
+                if (!uploadedFiles.approval_document) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Document Required',
+                        text: 'Please upload the approval document'
+                    });
+                    return false;
+                }
+                return true;
+
+            case 4:
+                if (!uploadedFiles.fee_receipt) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Receipt Required',
+                        text: 'Please upload the fee receipt'
+                    });
+                    return false;
+                }
+                return true;
+
+            default:
+                return true;
+        }
+    }
+
+    function handleFileUpload(file, previewId, dropzoneId, fileType) {
+        const dropzone = document.getElementById(dropzoneId);
+        const preview = document.getElementById(previewId);
+        const previewContainer = dropzone.querySelector('.preview-container');
+        const fileName = dropzone.querySelector('.file-name');
+        const fileSize = dropzone.querySelector('.file-size');
+
+        if (file) {
+            dropzone.classList.add('uploading');
+            const progressBar = dropzone.querySelector('.upload-progress');
+            let progress = 0;
+
+            const progressInterval = setInterval(() => {
+                progress += 5;
+                if (progressBar) progressBar.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        dropzone.classList.remove('uploading');
+                        if (progressBar) progressBar.style.width = '0%';
+                        
+                        if (file.type.startsWith('image/')) {
+                            preview.src = URL.createObjectURL(file);
+                            preview.style.display = 'block';
+                            preview.style.animation = 'fadeIn 0.5s forwards';
+                        }
+                        
+                        fileName.textContent = file.name;
+                        fileSize.textContent = `${Math.round(file.size / 1024)} KB`;
+                        previewContainer.style.display = 'block';
+                        previewContainer.style.animation = 'slideInUp 0.5s forwards';
+                        
+                        const dzMessage = dropzone.querySelector('.dz-message');
+                        if (dzMessage) {
+                            dzMessage.style.animation = 'fadeOut 0.3s forwards';
+                            setTimeout(() => {
+                                dzMessage.style.display = 'none';
+                            }, 300);
+                        }
+                        
+                        uploadedFiles[fileType] = true;
+                    }, 500);
+                }
+            }, 50);
+        }
+    }
+
+    function initializeDropzone(dropzoneId, inputId, fileType) {
+        const dropzone = document.getElementById(dropzoneId);
+        const input = document.getElementById(inputId);
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+        });
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, () => {
+                dropzone.classList.add('dragging');
+            });
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, () => {
+                dropzone.classList.remove('dragging');
+            });
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                input.files = e.dataTransfer.files;
+                handleFileUpload(file, 
+                    dropzoneId === 'approvalDropzone' ? 'approvalPreview' : 'receiptPreview',
+                    dropzoneId,
+                    fileType);
+            }
+        });
+
+        dropzone.addEventListener('click', () => input.click());
+        
+        input.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                handleFileUpload(file,
+                    dropzoneId === 'approvalDropzone' ? 'approvalPreview' : 'receiptPreview',
+                    dropzoneId,
+                    fileType);
+            }
+        });
+    }
+
+    // Navigation event listeners
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        if (validateStep(currentStep)) {
+            currentStep++;
+            showStep(currentStep, 'next');
+        }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        currentStep--;
+        showStep(currentStep, 'prev');
+    });
+
+    // Form submission handler
+    document.getElementById('withdrawalForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (!validateStep(currentStep)) {
+            return;
+        }
+
+        document.querySelector('.submit-loader').style.display = 'flex';
+
+        try {
+            const formData = new FormData(e.target);
+            const response = await fetch('{% url "transactions:withdrawal" %}', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Your transfer has been submitted successfully',
+                    allowOutsideClick: false
+                }).then(() => {
+                    window.location.href = '{% url "transactions:login_con" %}';
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: result.message || 'An error occurred while processing your transfer'
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'System Error',
+                text: 'An unexpected error occurred. Please try again later.'
+            });
+        } finally {
+            document.querySelector('.submit-loader').style.display = 'none';
+        }
+    });
+
+    // Add animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideOutLeft {
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+        @keyframes slideOutRight {
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; }
+        }
+        @keyframes slideInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .transfer-code-loader, .submit-loader {
+            transition: opacity 0.3s ease;
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Initialize
+    initializeDropzone('approvalDropzone', 'id_approval_document', 'approval_document');
+    initializeDropzone('receiptDropzone', 'id_fee_receipt', 'fee_receipt');
+    showStep(1);
+});
+</script>
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var recipientBankNameInput = document.querySelector('#id_recipient_bank_name');
+        var bankOptions = document.querySelectorAll('#id_recipient_bank_name option');
+
+        recipientBankNameInput.addEventListener('input', function() {
+            var userInput = this.value.toLowerCase();
+
+            for (var i = 0; i < bankOptions.length; i++) {
+                var option = bankOptions[i];
+                var optionValue = option.value.toLowerCase();
+                var optionText = option.text.toLowerCase();
+
+                if (optionValue.includes(userInput) || optionText.includes(userInput)) {
+                    option.style.display = 'block';
+                } else {
+                    option.style.display = 'none';
+                }
+            }
+        });
+    });
+</script>
+
+
+
+        </div>
+    </div>
+
+
+
+
+    <style>
+        /* Add custom styles here */
+        .bank-transfer-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 50px auto;
+            max-width: 900px;
+            background-color: #F5F7FA;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 5, 0.1);
+        }
+
+        .bank-transfer-header {
+            text-align: center;
+        }
+
+        .bank-transfer-logo {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .bank-transfer-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .bank-transfer-greeting {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .bank-transfer-balance {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .bank-transfer-balance-label {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #666666;
+        }
+
+        .bank-transfer-balance-amount {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        .currency-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .currency-icon {
+            font-size: 24px;
+            margin: 0 10px;
+            color: #666666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .input-group-text {
+            background-color: #f5f7fa;
+            border: none;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            width: 100%;
+        }
+
+        button[type="submit"] {
+            font-size: 18px;
+            border-radius: 5px;
+            padding: 12px 25px;
+            border: none;
+            font-weight: 500;
+            background-color: #6A64F1;
+            color: white;
+            cursor: pointer;
+            margin-top: 25px;
+        }
+
+        button[type="submit"]:hover {
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+{% endblock %}

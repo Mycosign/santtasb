@@ -1,0 +1,154 @@
+{% extends "core/base.html" %}
+{% block content %}
+{% include "core/messages.html" %}
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-lg">
+        <div class="nk-content-body">
+            <div class="nk-block-head">
+                <div class="nk-block-between-md g-4">
+                    <div class="nk-block-head-content">
+                        <h2 class="nk-block-title fw-normal">Apply for a Loan</h2>
+                        <div class="nk-block-des">
+                            <p>Complete the form below to submit your loan application.</p>
+                        </div>
+                    </div>
+                    <div class="nk-block-head-content">
+                        <a href="{% url 'transactions:loan_application_list' %}" class="btn btn-outline-light">
+                            <em class="icon ni ni-arrow-left"></em> <span>Back to Applications</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nk-block">
+                <div class="card card-bordered">
+                    <div class="card-inner">
+                        <form method="post" class="form-validate">
+                            {% csrf_token %}
+                            
+                            <div class="row g-gs">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="{{ form.loan_product.id_for_label }}">Loan Product</label>
+                                        {{ form.loan_product }}
+                                        {% if form.loan_product.errors %}
+                                        <div class="form-error text-danger mt-1">{{ form.loan_product.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="{{ form.loan_amount.id_for_label }}">Loan Amount</label>
+                                        <div class="form-control-wrap">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">{{ user.account.account_currency }}</span>
+                                                </div>
+                                                {{ form.loan_amount }}
+                                            </div>
+                                            {% if form.loan_amount.errors %}
+                                            <div class="form-error text-danger mt-1">{{ form.loan_amount.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="{{ form.term.id_for_label }}">Term</label>
+                                        {{ form.term }}
+                                        {% if form.term.errors %}
+                                        <div class="form-error text-danger mt-1">{{ form.term.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="{{ form.rate_type.id_for_label }}">Interest Rate Type</label>
+                                        {{ form.rate_type }}
+                                        {% if form.rate_type.errors %}
+                                        <div class="form-error text-danger mt-1">{{ form.rate_type.errors.0 }}</div>
+                                        {% endif %}
+                                        <div class="form-note">Fixed rates remain constant. Variable rates may change with market conditions.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-label" for="{{ form.purpose.id_for_label }}">Purpose of Loan</label>
+                                        {{ form.purpose }}
+                                        {% if form.purpose.errors %}
+                                        <div class="form-error text-danger mt-1">{{ form.purpose.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="{{ form.annual_income.id_for_label }}">Annual Income</label>
+                                        <div class="form-control-wrap">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">{{ user.account.account_currency }}</span>
+                                                </div>
+                                                {{ form.annual_income }}
+                                            </div>
+                                            {% if form.annual_income.errors %}
+                                            <div class="form-error text-danger mt-1">{{ form.annual_income.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="{{ form.existing_debt.id_for_label }}">Existing Debt</label>
+                                        <div class="form-control-wrap">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">{{ user.account.account_currency }}</span>
+                                                </div>
+                                                {{ form.existing_debt }}
+                                            </div>
+                                            {% if form.existing_debt.errors %}
+                                            <div class="form-error text-danger mt-1">{{ form.existing_debt.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-label" for="{{ form.collateral_description.id_for_label }}">Collateral Description (if applicable)</label>
+                                        {{ form.collateral_description }}
+                                        {% if form.collateral_description.errors %}
+                                        <div class="form-error text-danger mt-1">{{ form.collateral_description.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="agree-terms" required>
+                                            <label class="form-check-label" for="agree-terms">I confirm that the information provided is accurate and complete. I authorize the bank to verify this information and check my credit history.</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-lg btn-primary">Submit Application</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
